@@ -1,0 +1,1 @@
+{"id":"a420cf58-52aa-449f-a41b-38067c8240a9","ts":"2026-03-24T14:25:30.483Z","path":"/Users/georges-henrimoll/Documents/GitHub/Bobathons/0-GHBObAthon/labs/lab4-bobshell/issues.json","version":"1.0.0","taskID":"9a335895-1a1c-4bd5-b042-15c3c2ba6bfd"}
