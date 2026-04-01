@@ -87,25 +87,59 @@ List of popular cities organized by continent.
 **Example prompt:**
 - "Show me popular cities for weather queries"
 
-## 🔑 Optional: Real Weather Data
+## 🔑 Configuration de l'API Key (Hackathon)
 
-The server works in DEMO mode by default with mock data. To get real weather:
+### Pour les Participants du Hackathon
 
-1. Get a free API key from [OpenWeatherMap](https://openweathermap.org/api)
-   - Sign up (free, takes 2 minutes)
-   - Copy your API key
+**La clé API sera fournie par les organisateurs au début de l'événement.**
 
-2. Create `.env` file:
-```bash
-cp .env.example .env
-```
+#### Étapes de Configuration :
 
-3. Add your API key to `.env`:
-```env
-OPENWEATHER_API_KEY=your_actual_api_key_here
-```
+1. **Copiez le fichier template** :
+   ```bash
+   cd labs/lab6-custom-mcp-modes/simple-weather-server
+   cp .env.example .env
+   ```
 
-4. Restart VS Code
+2. **Éditez le fichier `.env`** et remplacez `votre_cle_api_ici` par la clé fournie :
+   ```env
+   OPENWEATHER_API_KEY=la_cle_fournie_par_les_organisateurs
+   ```
+
+3. **Redémarrez VS Code** pour que les changements prennent effet
+
+4. **Testez la configuration** :
+   ```bash
+   node diagnose-api.js  # Diagnostic complet
+   node test-api.js      # Tests de l'API
+   ```
+
+### ⚠️ Important - Sécurité
+
+- ❌ **Ne commitez JAMAIS** votre fichier `.env` (il est déjà dans `.gitignore`)
+- ❌ **Ne partagez pas** la clé API publiquement
+- ✅ Le fichier `.env` reste sur votre machine locale uniquement
+- ✅ La clé sera révoquée après le hackathon
+
+### 🎯 Mode DEMO (Sans Clé API)
+
+Le serveur fonctionne aussi en **mode DEMO** avec des données fictives :
+- Aucune clé API requise
+- Parfait pour tester l'intégration
+- Données météo réalistes mais statiques
+
+### 🌐 Obtenir Votre Propre Clé (Optionnel)
+
+Si vous souhaitez votre propre clé gratuite après le hackathon :
+
+1. Créez un compte sur [OpenWeatherMap](https://openweathermap.org/api)
+2. Copiez votre clé API
+3. Ajoutez-la dans `.env`
+4. Redémarrez VS Code
+
+**Limites du plan gratuit :**
+- 1,000 appels/jour
+- 60 appels/minute
 
 ## 💬 Example Conversations with Bob
 

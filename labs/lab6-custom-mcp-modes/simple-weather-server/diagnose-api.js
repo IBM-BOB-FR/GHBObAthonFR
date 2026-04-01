@@ -9,8 +9,24 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
-// Clé API fournie pour les participants du Bobathon
-const API_KEY = '***REMOVED***';
+// Charger les variables d'environnement depuis .env
+require('dotenv').config({ path: path.join(__dirname, '.env') });
+
+// Récupérer la clé API depuis les variables d'environnement
+const API_KEY = process.env.OPENWEATHER_API_KEY;
+
+// Vérifier que la clé API est configurée
+if (!API_KEY || API_KEY === 'votre_cle_api_ici') {
+  console.error('\x1b[31m❌ ERREUR: Clé API non configurée\x1b[0m');
+  console.error('\x1b[33m');
+  console.error('Pour configurer la clé API:');
+  console.error('1. Copiez le fichier .env.example vers .env');
+  console.error('   cp .env.example .env');
+  console.error('2. Éditez .env et remplacez "votre_cle_api_ici" par la vraie clé');
+  console.error('3. La clé sera fournie par les organisateurs du hackathon');
+  console.error('\x1b[0m');
+  process.exit(1);
+}
 
 // Couleurs pour la console
 const colors = {
