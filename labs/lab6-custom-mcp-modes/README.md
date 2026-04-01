@@ -247,13 +247,13 @@ Bob utilisera automatiquement les outils du serveur météo !
 
 ### Étape 2.6 : Comprendre la Configuration API
 
-**📋 INFORMATION : Clé API fournie**
+**📋 INFORMATION : Clé API pour le Hackathon**
 
-Pour ce lab, une clé API OpenWeatherMap est déjà intégrée dans les scripts de test (`test-api.js` et `diagnose-api.js`). Vous n'avez **pas besoin** d'obtenir votre propre clé API.
+Pour ce lab, une clé API OpenWeatherMap sera fournie par les organisateurs au début du hackathon.
 
-**Clé API fournie** : `***REMOVED***`
+**Clé API** : `[sera communiquée au début du hackathon]`
 
-Cette clé est partagée pour tous les participants du Bobathon et permet :
+Cette clé partagée permettra :
 - ✅ 1,000 appels/jour
 - ✅ 60 appels/minute
 - ✅ Accès aux données météo en temps réel
