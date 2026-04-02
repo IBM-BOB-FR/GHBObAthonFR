@@ -8,9 +8,6 @@ Bienvenue au Bobathon ! Un événement de formation pour découvrir et maîtrise
 GHBObAthon/
 ├── readme.md                    # Ce fichier
 ├── requirements.txt             # Dépendances Python pour tous les labs
-├── presentation/                # Supports de présentation (2h)
-│   ├── PRESENTATION.md
-│   └── SLIDES.md
 ├── labs/                        # 10 labs pratiques (8h30-11h30 total)
 │   ├── lab0-prise-en-main/     # 50-70 min ⭐
 │   ├── lab1-decouverte/        # 45-60 min ⭐
