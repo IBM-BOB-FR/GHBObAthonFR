@@ -26,13 +26,13 @@ GHBObAthon/
 
 ## 🎯 Programme
 
-### 1. Présentation (2 heures)
+### 1. Présentation (30 mn)
 - Introduction à Bob
 - Capacités et outils
 - Démonstrations live
 - Installation et configuration
 
-### 2. Labs Pratiques (8h30-11h30)
+### 2. Labs Pratiques (9:00-12:45; 13:45-16:00)
 Progression recommandée selon votre profil :
 
 - **Lab 0** : Prise en Main de Bob (débutant - COMMENCEZ ICI !) ⭐
