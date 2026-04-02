@@ -37,14 +37,14 @@ Progression recommandée selon votre profil :
 
 - **[Lab 0](labs/lab0-prise-en-main)** : Prise en Main de Bob (débutant - COMMENCEZ ICI !) ⭐
 - **[Lab 1](labs/lab1-decouverte)** : Découverte et Premiers Pas avec Bob (débutant) ⭐
-- **Lab 1bis** : Créer une Application Todo (débutant à intermédiaire) ⭐
-- **Lab 2** : Refactoring et Amélioration de Code (intermédiaire) ⭐⭐
-- **Lab 3** : Création d'API et Tests (avancé) ⭐⭐⭐
-- **Lab 4** : BobShell et Utilisation en Ligne de Commande (intermédiaire) ⭐⭐
-- **Lab 4bis** : Data Science et Analyse de Données (avancé) ⭐⭐⭐
-- **Lab 5** : Architecture et Design Patterns (expert) ⭐⭐⭐⭐
-- **Lab 6** : Création de Serveurs MCP et Modes Personnalisés (avancé) ⭐⭐⭐
-- **Lab 7** : DevOps, Automation & Playbooks (expert) ⭐⭐⭐⭐⭐
+- **[Lab 1bis](labs/lab1bis-creer-une-appli)** : Créer une Application Todo (débutant à intermédiaire) ⭐
+- **[Lab 2](labs/lab2-refactoring)** : Refactoring et Amélioration de Code (intermédiaire) ⭐⭐
+- **[Lab 3](labs/lab3-api-tests)** : Création d'API et Tests (avancé) ⭐⭐⭐
+- **[Lab 4](labs/lab4-bobshell)** : BobShell et Utilisation en Ligne de Commande (intermédiaire) ⭐⭐
+- **[Lab 4bis](labs/lab4bis-data-science)** : Data Science et Analyse de Données (avancé) ⭐⭐⭐
+- **[Lab 5](labs/lab5-architecture)** : Architecture et Design Patterns (expert) ⭐⭐⭐⭐
+- **[Lab 6](labs/lab6-custom-mcp-modes)** : Création de Serveurs MCP et Modes Personnalisés (avancé) ⭐⭐⭐
+- **[Lab 7](labs/lab7-devops-automation)** : DevOps, Automation & Playbooks (expert) ⭐⭐⭐⭐⭐
 
 ## 🗺️ Parcours d'Apprentissage
 
@@ -201,7 +201,7 @@ Apprenez à :
 - Créer et modifier du code
 - Exécuter des commandes avancées
 
-### Lab 1bis : Créer une Application Todo ⭐
+### [Lab 1bis : Créer une Application Todo](labs/lab1bis-creer-une-appli) ⭐
 **Durée** : 45 minutes
 **Niveau** : Débutant à Intermédiaire
 
@@ -214,7 +214,7 @@ Apprenez à :
 - Créer un backend API REST Python Flask avec SQLite
 - Développer un frontend JavaScript moderne
 
-### Lab 2 : Refactoring et Amélioration ⭐⭐
+### [Lab 2 : Refactoring et Amélioration](labs/lab2-refactoring) ⭐⭐
 **Durée** : 60-75 minutes  
 **Niveau** : Intermédiaire
 
@@ -224,7 +224,7 @@ Apprenez à :
 - Utiliser des design patterns
 - Améliorer la qualité du code
 
-### Lab 3 : Création d'API et Tests ⭐⭐⭐
+### [Lab 3 : Création d'API et Tests](labs/lab3-api-tests) ⭐⭐⭐
 **Durée** : 75-90 minutes
 **Niveau** : Avancé
 
@@ -234,7 +234,7 @@ Apprenez à :
 - Écrire des tests complets
 - Documenter les APIs
 
-### Lab 4 : BobShell et Utilisation en Ligne de Commande ⭐⭐
+### [Lab 4 : BobShell et Utilisation en Ligne de Commande](labs/lab4-bobshell) ⭐⭐
 **Durée** : 45-60 minutes
 **Niveau** : Intermédiaire
 
@@ -243,7 +243,7 @@ Apprenez à :
 - Créer des scripts d'automatisation qui exploitent les capacités IA de Bob
 - Intégrer Bob dans les pipelines CI/CD
 
-### Lab 4bis : Data Science et Analyse de Données ⭐⭐⭐
+### [Lab 4bis : Data Science et Analyse de Données](labs/lab4bis-data-science) ⭐⭐⭐
 **Durée** : 75-90 minutes
 **Niveau** : Avancé
 
@@ -253,7 +253,7 @@ Apprenez à :
 - Construire des modèles ML
 - Évaluer les performances
 
-### Lab 5 : Architecture et Design Patterns ⭐⭐⭐⭐
+### [Lab 5 : Architecture et Design Patterns](labs/lab5-architecture) ⭐⭐⭐⭐
 **Durée** : 90-120 minutes
 **Niveau** : Expert
 
@@ -263,7 +263,7 @@ Apprenez à :
 - Implémenter l'architecture hexagonale
 - Créer des systèmes scalables
 
-### Lab 6 : Création de Serveurs MCP et Modes Personnalisés ⭐⭐⭐
+### [Lab 6 : Création de Serveurs MCP et Modes Personnalisés](labs/lab6-custom-mcp-modes) ⭐⭐⭐
 **Durée** : 75-90 minutes
 **Niveau** : Avancé
 
@@ -274,7 +274,7 @@ Apprenez à :
 - Intégrer Bob avec des API externes
 - Créer des modes Bob personnalisés adaptés aux workflows spécifiques
 
-### Lab 7 : DevOps, Automation & Playbooks ⭐⭐⭐⭐⭐
+### [Lab 7 : DevOps, Automation & Playbooks](labs/lab7-devops-automation) ⭐⭐⭐⭐⭐
 **Durée** : 90-120 minutes
 **Niveau** : Expert
 
