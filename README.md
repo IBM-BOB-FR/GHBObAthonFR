@@ -35,8 +35,8 @@ GHBObAthon/
 ### 2. Labs Pratiques (9:00-12:45; 13:45-16:00)
 Progression recommandée selon votre profil :
 
-- **Lab 0** : Prise en Main de Bob (débutant - COMMENCEZ ICI !) ⭐
-- **Lab 1** : Découverte et Premiers Pas avec Bob (débutant) ⭐
+- **[Lab 0](labs/lab0-prise-en-main)** : Prise en Main de Bob (débutant - COMMENCEZ ICI !) ⭐
+- **[Lab 1](labs/lab1-decouverte)** : Découverte et Premiers Pas avec Bob (débutant) ⭐
 - **Lab 1bis** : Créer une Application Todo (débutant à intermédiaire) ⭐
 - **Lab 2** : Refactoring et Amélioration de Code (intermédiaire) ⭐⭐
 - **Lab 3** : Création d'API et Tests (avancé) ⭐⭐⭐
@@ -178,7 +178,7 @@ Modes Bob sur mesure
 
 ## 🎓 Contenu des Labs
 
-### Lab 0 : Prise en Main de Bob ⭐
+### [Lab 0 : Prise en Main de Bob](labs/lab0-prise-en-main) ⭐
 **Durée** : 60-90 minutes
 **Niveau** : Débutant - **COMMENCEZ ICI !**
 
@@ -191,7 +191,7 @@ Apprenez à :
 
 **6 exercices progressifs + 1 bonus** pour maîtriser les fondamentaux.
 
-### Lab 1 : Découverte et Premiers Pas ⭐
+### [Lab 1 : Découverte et Premiers Pas](labs/lab1-decouverte) ⭐
 **Durée** : 45-60 minutes
 **Niveau** : Débutant
 
