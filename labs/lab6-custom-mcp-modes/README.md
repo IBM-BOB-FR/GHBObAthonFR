@@ -129,10 +129,9 @@ MCP utilise une architecture client-serveur :
 **🔨 ACTION : Configurer le serveur météo MCP**
 
 Le serveur météo est un excellent point de départ car il :
-- ✅ Fonctionne immédiatement en mode DEMO (sans clé API)
 - ✅ Est simple à comprendre et à tester
 - ✅ Démontre tous les concepts MCP essentiels
-- ✅ Peut être étendu avec une vraie API météo (gratuite)
+- ✅ Peut facilement être étendu
 
 ```bash
 cd lab6-custom-mcp-modes/simple-weather-server
@@ -172,9 +171,27 @@ Le serveur implémente **3 outils simples** :
 
 ### Étape 2.3 : Tester le Serveur avec l'API Météo
 
-**🔨 ACTION : Tester avec la clé API fournie**
+1. **Obtenez une clé API gratuite** :
+   - Allez sur https://openweathermap.org/api
+   - Inscrivez-vous (gratuit, 2 minutes)
+   - Copiez votre clé API
+  
+Cette clé vous permettra :
+- ✅ 1,000 appels/jour
+- ✅ 60 appels/minute
+- ✅ Accès aux données météo en temps réel
+- ✅ Prévisions sur 5 jours
 
-Une clé API OpenWeatherMap est déjà intégrée dans le script de test pour les participants du Bobathon :
+2. **Configurez votre clé** :
+   ```bash
+   cd lab6-custom-mcp-modes/simple-weather-server
+   cp .env.example .env
+   # Éditez .env et ajoutez : OPENWEATHER_API_KEY=votre_clé
+   ```
+
+3. **Redémarrez Bob ou relancez le serveur MCP** pour que Bob utilise la clé personnelle
+
+4. **Testez le serveur MCP**
 
 ```bash
 cd lab6-custom-mcp-modes/simple-weather-server
@@ -245,37 +262,6 @@ Ce script vérifie :
 
 Bob utilisera automatiquement les outils du serveur météo !
 
-### Étape 2.6 : Comprendre la Configuration API
-
-**📋 INFORMATION : Clé API pour le Hackathon**
-
-Pour ce lab, une clé API OpenWeatherMap sera fournie par les organisateurs au début du hackathon.
-
-**Clé API** : `[sera communiquée au début du hackathon]`
-
-Cette clé partagée permettra :
-- ✅ 1,000 appels/jour
-- ✅ 60 appels/minute
-- ✅ Accès aux données météo en temps réel
-- ✅ Prévisions sur 5 jours
-
-**💡 Pour votre usage personnel après le Bobathon** :
-
-Si vous souhaitez continuer à utiliser ce serveur MCP après l'événement avec votre propre clé API :
-
-1. **Obtenez une clé API gratuite** :
-   - Allez sur https://openweathermap.org/api
-   - Inscrivez-vous (gratuit, 2 minutes)
-   - Copiez votre clé API
-
-2. **Configurez votre clé** :
-   ```bash
-   cd lab6-custom-mcp-modes/simple-weather-server
-   cp .env.example .env
-   # Éditez .env et ajoutez : OPENWEATHER_API_KEY=votre_clé
-   ```
-
-3. **Redémarrez VS Code** pour que Bob utilise votre clé personnelle
 
 ## Partie 3 : (Optionnel) Serveur MCP Avancé avec JIRA
 
