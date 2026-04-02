@@ -1,0 +1,183 @@
+customModes:
+  - slug: devops
+    name: 🚀 DevOps Mode
+    description: Specialized mode for DevOps workflows including deployment, monitoring, and incident response
+    version: 1.0.0
+    roleDefinition: >-
+      You are a DevOps expert assistant. Help with deployments, monitoring, incident response, and infrastructure management. Always prioritize safety and follow best practices. For production deployments, always verify prerequisites and require explicit approval.
+      
+      Your responsibilities include:
+      - Managing application deployments across environments
+      - Monitoring system health and performance
+      - Responding to incidents and outages
+      - Managing infrastructure and resources
+      - Analyzing logs and metrics
+      - Implementing rollback strategies
+      - Ensuring deployment safety and compliance
+      
+      Always follow the principle of least privilege and implement proper safety checks for critical operations.
+    whenToUse: >-
+      Use this mode when you need to:
+      - Deploy applications to staging or production environments
+      - Monitor deployment status and system health
+      - Respond to incidents and perform troubleshooting
+      - Rollback deployments when issues occur
+      - Manage infrastructure and cloud resources
+      - Analyze logs and performance metrics
+      - Execute database queries for operational purposes
+      - Follow deployment checklists and runbooks
+      - Create post-mortem documentation
+      
+      This mode provides specialized tools for DevOps workflows with built-in safety checks and approval mechanisms for critical operations.
+    capabilities:
+      - deployment
+      - monitoring
+      - incident-response
+      - infrastructure-management
+      - log-analysis
+    mcpServers:
+      - name: custom-mcp-server
+        command: node
+        args:
+          - server.js
+        cwd: ./lab6-custom-mcp-modes/mcp-server
+        env:
+          LOG_LEVEL: info
+    tools:
+      - name: deploy_application
+        enabled: true
+        requiresApproval: true
+        approvalMessage: This will deploy to {environment}. Proceed?
+      - name: rollback_deployment
+        enabled: true
+        requiresApproval: true
+        approvalMessage: This will rollback deployment {deploymentId}. Proceed?
+      - name: check_deployment_status
+        enabled: true
+        requiresApproval: false
+      - name: query_database
+        enabled: true
+        requiresApproval: false
+        restrictions:
+          readOnly: true
+          maxResults: 1000
+    settings:
+      autoApprove: false
+      verboseLogging: true
+      maxConcurrentOperations: 3
+      defaultEnvironment: staging
+      safetyChecks:
+        productionDeployment: true
+        databaseOperations: true
+        infrastructureChanges: true
+    prompts:
+      - name: deployment_checklist
+        description: Pre-deployment checklist
+        template: >-
+          Before deploying {application} to {environment}, verify:
+          
+          1. All tests passing
+          2. Code reviewed and approved
+          3. Database migrations ready
+          4. Rollback plan documented
+          5. Monitoring alerts configured
+          6. Stakeholders notified
+          
+          Proceed with deployment?
+      - name: incident_response
+        description: Incident response runbook
+        template: >-
+          Incident Response for {service}:
+          
+          1. Assess Impact
+             - Check service health
+             - Review error rates
+             - Identify affected users
+          
+          2. Immediate Actions
+             - Scale resources if needed
+             - Enable circuit breakers
+             - Notify stakeholders
+          
+          3. Investigation
+             - Check recent deployments
+             - Review logs
+             - Analyze metrics
+          
+          4. Resolution
+             - Apply fix or rollback
+             - Verify resolution
+             - Update status page
+          
+          5. Post-Mortem
+             - Document timeline
+             - Identify root cause
+             - Create action items
+      - name: post_mortem
+        description: Post-mortem template
+        template: >-
+          # Post-Mortem: {incident_title}
+          
+          ## Summary
+          {brief_summary}
+          
+          ## Timeline
+          - **Detection**: {detection_time}
+          - **Response**: {response_time}
+          - **Resolution**: {resolution_time}
+          - **Duration**: {total_duration}
+          
+          ## Impact
+          - **Users Affected**: {user_count}
+          - **Services Affected**: {services}
+          - **Revenue Impact**: {revenue_impact}
+          
+          ## Root Cause
+          {root_cause_analysis}
+          
+          ## Resolution
+          {resolution_steps}
+          
+          ## Action Items
+          1. {action_item_1}
+          2. {action_item_2}
+          3. {action_item_3}
+          
+          ## Lessons Learned
+          {lessons_learned}
+    shortcuts:
+      - name: Deploy to Staging
+        command: Deploy {application} version {version} to staging environment
+        requiresInput:
+          - application
+          - version
+      - name: Check Service Health
+        command: Check the health status of {service}
+        requiresInput:
+          - service
+      - name: View Recent Deployments
+        command: Show me the last 10 deployments for {application}
+        requiresInput:
+          - application
+    documentation:
+      gettingStarted: This mode provides tools for DevOps workflows. Use it for deployments, monitoring, and incident response.
+      examples:
+        - Deploy myapp version 2.1.0 to staging
+        - Check deployment status for deployment-12345
+        - Rollback deployment-12345 due to high error rate
+        - Show me the deployment checklist for production
+      bestPractices:
+        - Always test in staging before production
+        - Have a rollback plan ready
+        - Monitor deployments closely
+        - Document all changes
+        - Communicate with stakeholders
+    groups:
+      - read
+      - - edit
+        - fileRegex: \.(yaml|yml|json|sh|bash|tf|hcl|dockerfile)$
+          description: DevOps configuration files, scripts, and infrastructure as code
+      - command
+      - mcp
+
+# Made with Bob
