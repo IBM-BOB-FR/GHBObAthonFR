@@ -188,10 +188,8 @@ Cette clé vous permettra :
    cp .env.example .env
    # Éditez .env et ajoutez : OPENWEATHER_API_KEY=votre_clé
    ```
-
-3. **Redémarrez Bob ou relancez le serveur MCP** pour que Bob utilise la clé personnelle
-
-4. **Testez le serveur MCP**
+   
+3. **Testez le serveur MCP**
 
 ```bash
 cd lab6-custom-mcp-modes/simple-weather-server
@@ -243,7 +241,7 @@ Ce script vérifie :
 6. Sauvegardez le fichier
 7. **Redémarrez Bob** (Cmd+Shift+P → "Reload Window")
 
-> **⚠️ Important :** Les outils MCP ne fonctionnent qu'en **mode Avancé** (🛠️). Assurez-vous de passer en mode Avancé avant de tester !
+> **⚠️ Important :** Le seul mode standard qui permet l'accès aux outils MCP est le **mode Avancé** (🛠️). Assurez-vous de passer en mode Avancé avant de tester ! Il est par contre tout à fait possible de configurer des modes Bob personnalisés afin de permettre l'accès direct aux outils MCP.
 
 ### Étape 2.5 : Tester avec Bob
 
@@ -365,28 +363,28 @@ En mode Avancé, testez :
 **💡 OPTIONNEL : Comment installer des modes**
 
 1. Ouvrez les Paramètres Bob
-2. Naviguez vers **Modes Personnalisés**
-3. Cliquez sur **Importer un Mode**
+2. Naviguez vers **Modes**
+3. Cliquez sur l'icône d'**Import** 
 4. Sélectionnez un fichier :
-   - `custom-mode/devops-mode.json` - Workflow DevOps
-   - `custom-mode/code-review-mode.json` - Revue de code
-   - `custom-mode/architecture-mode.json` - Conception d'architecture
+   - `custom-mode/devops-mode.yaml` - Workflow DevOps
+   - `custom-mode/code-review-mode.yaml` - Revue de code
+   - `custom-mode/architecture-mode.yaml` - Conception d'architecture
 
 ### Étape 4.2 : Modes Disponibles
 
-**Mode DevOps** (`devops-mode.json`) :
+**Mode DevOps** (`devops-mode.yaml`) :
 - Automatisation de déploiement
 - Gestion d'infrastructure
 - Surveillance et alertes
 - Réponse aux incidents
 
-**Mode Revue de Code** (`code-review-mode.json`) :
+**Mode Revue de Code** (`code-review-mode.yaml`) :
 - Analyse de code automatisée
 - Scan de sécurité
 - Vérification des meilleures pratiques
 - Suggestions d'amélioration
 
-**Mode Architecture** (`architecture-mode.json`) :
+**Mode Architecture** (`architecture-mode.yaml`) :
 - Assistance à la conception système
 - Documentation d'architecture
 - Recommandations technologiques
