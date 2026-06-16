@@ -8,7 +8,7 @@ Bienvenue au Bobathon ! Un événement de formation pour découvrir et maîtrise
 GHBObAthon/
 ├── readme.md                    # Ce fichier
 ├── requirements.txt             # Dépendances Python pour tous les labs
-├── labs/                        # 10 labs pratiques (8h30-11h30 total)
+├── labs/                        # 11 labs pratiques (9h15-12h30 total)
 │   ├── lab0-prise-en-main/     # 50-70 min ⭐
 │   ├── lab1-decouverte/        # 45-60 min ⭐
 │   ├── lab1bis-creer-une-appli/ # 45 min ⭐
@@ -18,7 +18,8 @@ GHBObAthon/
 │   ├── lab4bis-data-science/   # 75-90 min ⭐⭐⭐
 │   ├── lab5-architecture/      # 90-120 min ⭐⭐⭐⭐
 │   ├── lab6-custom-mcp-modes/  # 75-90 min ⭐⭐⭐
-│   └── lab7-devops-automation/ # 90-120 min ⭐⭐⭐⭐⭐
+│   ├── lab7-devops-automation/ # 90-120 min ⭐⭐⭐⭐⭐
+│   └── lab8-skills-et-rules/   # 45-60 min ⭐⭐
 ```
 
 ## 🎯 Programme
@@ -42,6 +43,7 @@ Progression recommandée selon votre profil :
 - **[Lab 5](labs/lab5-architecture)** : Architecture et Design Patterns (expert) ⭐⭐⭐⭐
 - **[Lab 6](labs/lab6-custom-mcp-modes)** : Création de Serveurs MCP et Modes Personnalisés (avancé) ⭐⭐⭐
 - **[Lab 7](labs/lab7-devops-automation)** : DevOps, Automation & Playbooks (expert) ⭐⭐⭐⭐⭐
+- **[Lab 8](labs/lab8-skills-et-rules)** : Skills et Rules - Les Super-Pouvoirs de Bob (intermédiaire) ⭐⭐
 
 ## 🗺️ Parcours d'Apprentissage
 
@@ -284,6 +286,23 @@ Apprenez à :
 - Orchestrer des déploiements complexes
 
 **Technologies** : Ansible, GitLab CI/CD, NeoLoad, Dynatrace, RPA, IA Factory, API Marketplace, TSDL
+
+### [Lab 8 : Skills et Rules - Les Super-Pouvoirs de Bob](labs/lab8-skills-et-rules) ⭐⭐
+**Durée** : 45-60 minutes
+**Niveau** : Intermédiaire
+
+Apprenez à :
+- Comprendre et exploiter les 8 skills de Bob (Analyse, Génération, Refactoring, Tests, Documentation, Débogage, Optimisation, Architecture)
+- Maîtriser les 7 rules de Bob pour un workflow optimal
+- Combiner skills et rules pour maximiser votre efficacité
+- Créer des workflows personnalisés adaptés à vos besoins
+- Optimiser vos interactions avec Bob
+
+**Contenu** :
+- Guide complet des skills et rules
+- Exemples pratiques concrets
+- Référence rapide
+- Exercices progressifs
 
 ## 💡 Conseils pour Réussir
 
