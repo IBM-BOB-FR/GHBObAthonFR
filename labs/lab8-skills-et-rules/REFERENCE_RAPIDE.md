@@ -1,387 +1,516 @@
 # 📖 Référence Rapide : Skills et Rules de Bob
 
-## 🧠 Les 8 Skills de Bob
+## 🧠 Qu'est-ce qu'un Skill ?
 
-### 1. 🔍 Analyse
-**Quand l'utiliser** : Pour comprendre du code existant, identifier des problèmes
+Un **Skill** est un fichier de configuration YAML (`.bob/skills/*.yaml`) qui définit des comportements, standards et préférences pour Bob.
 
-**Exemples de commandes** :
-```
-"Analyse @fichier.py et identifie tous les code smells"
-"Quels sont les problèmes de performance dans @app.py ?"
-"Analyse l'architecture de ce projet"
-```
+### Structure d'un Skill
 
-**Ce que Bob fait** :
-- Détecte les violations de conventions (PEP 8, etc.)
-- Identifie les anti-patterns
-- Repère les problèmes de sécurité
-- Suggère des améliorations
+```yaml
+name: "Nom du Skill"
+description: "Description de ce que fait ce skill"
+version: "1.0.0"
 
----
-
-### 2. ✨ Génération
-**Quand l'utiliser** : Pour créer du nouveau code de qualité
-
-**Exemples de commandes** :
-```
-"Crée une classe User avec validation et type hints"
-"Génère une API REST pour gérer des produits"
-"Crée des tests unitaires pour @calculator.py"
+# Configuration spécifique
+config:
+  # Vos paramètres ici
 ```
 
-**Ce que Bob fait** :
-- Génère du code propre et structuré
-- Applique automatiquement les bonnes pratiques
-- Ajoute type hints et docstrings
-- Crée des tests pertinents
+### Exemples de Skills
 
----
+#### 1. Skill de Style Python
 
-### 3. 🔧 Refactoring
-**Quand l'utiliser** : Pour améliorer du code existant sans changer son comportement
-
-**Exemples de commandes** :
-```
-"Refactorise @legacy.py en appliquant le Strategy Pattern"
-"Améliore la lisibilité de @messy_code.py"
-"Extrais les méthodes trop longues dans @service.py"
+```yaml
+name: "Python Style Guide"
+version: "1.0.0"
+language: python
+formatter: black
+linter: ruff
+type_hints: required
+docstring_style: "Google"
+max_line_length: 88
 ```
 
-**Ce que Bob fait** :
-- Applique des design patterns
-- Extrait des méthodes/classes
-- Élimine la duplication
-- Améliore la structure
+#### 2. Skill de Framework
 
----
-
-### 4. 🧪 Tests
-**Quand l'utiliser** : Pour créer ou améliorer des tests
-
-**Exemples de commandes** :
-```
-"Crée des tests unitaires pour @models.py"
-"Ajoute des tests d'intégration pour l'API"
-"Améliore la couverture de tests à 90%"
+```yaml
+name: "FastAPI Development"
+version: "1.0.0"
+framework: fastapi
+architecture: "Layered"
+async_by_default: true
+validation: pydantic
+documentation: openapi
 ```
 
-**Ce que Bob fait** :
-- Crée des tests unitaires
-- Génère des tests d'intégration
-- Utilise pytest, unittest, etc.
-- Vérifie la couverture
+#### 3. Skill de Workflow TDD
 
----
-
-### 5. 📚 Documentation
-**Quand l'utiliser** : Pour documenter du code ou des projets
-
-**Exemples de commandes** :
-```
-"Ajoute des docstrings Google style à @utils.py"
-"Crée un README.md pour ce projet"
-"Documente l'API avec des exemples d'utilisation"
-```
-
-**Ce que Bob fait** :
-- Ajoute des docstrings
-- Crée des README
-- Génère de la documentation API
-- Ajoute des commentaires pertinents
-
----
-
-### 6. 🐛 Débogage
-**Quand l'utiliser** : Pour identifier et corriger des bugs
-
-**Exemples de commandes** :
-```
-"Pourquoi cette fonction retourne None ?"
-"Débogue l'erreur dans @app.py ligne 42"
-"Trouve pourquoi les tests échouent"
-```
-
-**Ce que Bob fait** :
-- Analyse les erreurs
-- Identifie les causes
-- Propose des corrections
-- Ajoute des logs si nécessaire
-
----
-
-### 7. ⚡ Optimisation
-**Quand l'utiliser** : Pour améliorer les performances
-
-**Exemples de commandes** :
-```
-"Optimise les performances de @slow_function.py"
-"Réduis la complexité algorithmique de cette boucle"
-"Ajoute du caching pour améliorer les performances"
-```
-
-**Ce que Bob fait** :
-- Identifie les goulots d'étranglement
-- Optimise les algorithmes
-- Ajoute du caching
-- Améliore l'utilisation mémoire
-
----
-
-### 8. 🏗️ Architecture
-**Quand l'utiliser** : Pour concevoir ou améliorer l'architecture
-
-**Exemples de commandes** :
-```
-"Propose une architecture pour une application e-commerce"
-"Comment structurer ce microservice ?"
-"Applique le pattern Repository à ce projet"
-```
-
-**Ce que Bob fait** :
-- Propose des architectures
-- Applique des patterns
-- Structure les projets
-- Sépare les responsabilités
-
----
-
-## 📏 Les 7 Rules de Bob
-
-### Rule 1 : Un Outil par Message ⚙️
-
-**Pourquoi** : Clarté, contrôle, traçabilité
-
-**Ce que ça signifie** :
-- Bob utilise exactement un outil par message
-- Chaque action est isolée et claire
-- Vous pouvez suivre facilement le processus
-
-**Exemple** :
-```
-❌ Mauvais : Bob ne peut pas créer 3 fichiers en un message
-✅ Bon : Bob crée un fichier, attend validation, puis le suivant
+```yaml
+name: "TDD Workflow"
+version: "1.0.0"
+workflow:
+  steps:
+    - name: "Write Test"
+      action: "create_test"
+    - name: "Implement"
+      action: "implement_feature"
+    - name: "Refactor"
+      action: "refactor_code"
+test_framework: pytest
+coverage_minimum: 80
 ```
 
 ---
 
-### Rule 2 : Validation Systématique ✅
+## 📏 Qu'est-ce qu'un fichier Rules ?
 
-**Pourquoi** : Sécurité, contrôle, confiance
+Le fichier **Rules** (`.bob/rules.md`) contient des instructions en langage naturel qui guident Bob dans votre projet.
 
-**Ce que ça signifie** :
-- Vous devez confirmer chaque action de Bob
-- Bob attend votre validation avant de continuer
-- Vous gardez le contrôle total
+### Structure d'un fichier Rules
 
-**Exemple** :
-```
-Bob : "Je vais créer le fichier app.py"
-Vous : [Confirmez]
-Bob : [Crée le fichier]
-Bob : "Fichier créé. Que voulez-vous faire ensuite ?"
-```
+```markdown
+# Règles du Projet
 
----
+## Architecture
+[Description de l'architecture]
 
-### Rule 3 : Lecture Groupée (Max 5 Fichiers) 📚
+## Conventions de Code
+[Vos conventions]
 
-**Pourquoi** : Contexte complet, efficacité
+## Bonnes Pratiques
+[Ce qu'il faut faire]
 
-**Ce que ça signifie** :
-- Bob peut lire jusqu'à 5 fichiers simultanément
-- Utilisez cette capacité pour donner du contexte
-- Plus efficace que lire un par un
-
-**Exemple** :
-```
-✅ Bon : "Lis @app.py, @models.py, @config.py, @utils.py et @routes.py"
-❌ Moins efficace : Lire chaque fichier séparément
+## Ce qu'il faut éviter
+[Ce qu'il ne faut pas faire]
 ```
 
----
+### Exemple de Rules
 
-### Rule 4 : Modifications Ciblées 🎯
+```markdown
+# Règles du Projet
 
-**Pourquoi** : Précision, sécurité, traçabilité
+## Architecture
 
-**Ce que ça signifie** :
-- Bob préfère `apply_diff` à `write_to_file`
-- Modifications précises = moins de risques
-- Vous voyez exactement ce qui change
+Ce projet suit une architecture en couches :
+- Routes : Endpoints API uniquement
+- Services : Toute la logique métier
+- Repositories : Accès aux données uniquement
 
-**Exemple** :
-```
-✅ Bon : apply_diff pour ajouter une méthode
-❌ Risqué : write_to_file pour tout réécrire
-```
+## Conventions de Nommage
 
----
+- Classes : PascalCase
+- Fonctions : snake_case
+- Constantes : UPPER_SNAKE_CASE
 
-### Rule 5 : Clarté Avant Action 💬
+## Bonnes Pratiques
 
-**Pourquoi** : Éviter les erreurs, comprendre les besoins
+- Toujours valider les entrées utilisateur
+- Utiliser des type hints partout
+- Logger les erreurs avec le contexte
+- Écrire des tests pour chaque fonctionnalité
 
-**Ce que ça signifie** :
-- Bob pose des questions si besoin
-- Il clarifie avant d'agir
-- Pas d'action basée sur des suppositions
+## Ce qu'il faut éviter
 
-**Exemple** :
-```
-Vous : "Améliore l'API"
-Bob : "Quels aspects voulez-vous améliorer ? Performance, sécurité, documentation ?"
+- Pas de logique métier dans les routes
+- Pas de secrets en dur dans le code
+- Pas de print() pour le debug
 ```
 
 ---
 
-### Rule 6 : Pas de Suppositions 🚫
+## 🎯 Quand Utiliser Skills vs Rules ?
 
-**Pourquoi** : Précision, éviter les erreurs
+### Utilisez un **Skill** pour :
 
-**Ce que ça signifie** :
-- Bob ne suppose pas ce que vous voulez
-- Il demande des précisions si nécessaire
-- Il attend la confirmation des résultats
+✅ Définir des standards techniques (formatage, linting)  
+✅ Configurer des outils et frameworks  
+✅ Créer des workflows réutilisables  
+✅ Partager des configurations entre projets  
+✅ Automatiser des patterns de code
 
-**Exemple** :
-```
-❌ Bob ne suppose pas : "Je pense que tu veux Flask"
-✅ Bob demande : "Quel framework préfères-tu : Flask ou FastAPI ?"
-```
+**Exemple** : "Utilise toujours Black avec une ligne max de 88 caractères"
 
----
+### Utilisez des **Rules** pour :
 
-### Rule 7 : Contexte Complet 📖
+✅ Décrire l'architecture du projet  
+✅ Définir des conventions d'équipe  
+✅ Expliquer le contexte métier  
+✅ Spécifier des contraintes spécifiques  
+✅ Documenter les décisions techniques
 
-**Pourquoi** : Modifications cohérentes et correctes
-
-**Ce que ça signifie** :
-- Bob lit les fichiers nécessaires avant de modifier
-- Il comprend le contexte global
-- Modifications cohérentes avec l'existant
-
-**Exemple** :
-```
-✅ Bon workflow :
-1. "Lis @app.py et @models.py"
-2. [Bob lit et comprend]
-3. "Ajoute une route pour créer un utilisateur"
-4. [Bob modifie en cohérence avec l'existant]
-```
+**Exemple** : "Dans ce projet, les services ne doivent jamais accéder directement à la base de données, ils doivent passer par les repositories"
 
 ---
 
-## 🎯 Combiner Skills et Rules : Workflows Optimaux
+## 🔄 Combiner Skills et Rules
 
-### Workflow 1 : Analyse et Refactoring
-
-```
-1. "Lis @legacy.py, @utils.py et @config.py" (Rule 3: Lecture groupée)
-2. [Bob lit les 3 fichiers]
-3. "Analyse ces fichiers et identifie les problèmes" (Skill: Analyse)
-4. [Bob analyse et liste les problèmes]
-5. "Refactorise @legacy.py en appliquant le Strategy Pattern" (Skill: Refactoring)
-6. [Bob utilise apply_diff pour modifier] (Rule 4: Modifications ciblées)
-7. [Vous validez] (Rule 2: Validation)
-8. "Crée des tests pour vérifier le refactoring" (Skill: Tests)
-```
-
-### Workflow 2 : Création d'Application
+### Approche Recommandée
 
 ```
-1. "Crée une API REST pour gérer des tâches" (Skill: Génération)
-2. [Bob crée app.py] (Rule 1: Un outil par message)
-3. [Vous validez] (Rule 2: Validation)
-4. [Bob crée models.py]
-5. [Vous validez]
-6. "Ajoute des tests unitaires" (Skill: Tests)
-7. "Documente l'API dans README.md" (Skill: Documentation)
+Skills (YAML)                Rules (Markdown)
+     ↓                             ↓
+Configuration                Instructions
+technique                    contextuelles
+     ↓                             ↓
+        ↘                     ↙
+          Bob Personnalisé
+                ↓
+        Code de Qualité
 ```
 
-### Workflow 3 : Optimisation
+### Exemple Complet
 
+**Skill** : `.bob/skills/python-api.yaml`
+```yaml
+name: "Python API Development"
+language: python
+framework: fastapi
+formatter: black
+linter: ruff
+type_hints: required
+async_by_default: true
 ```
-1. "Lis tous les fichiers du module performance/" (Rule 3: Lecture groupée)
-2. "Analyse les performances et identifie les goulots" (Skill: Analyse + Optimisation)
-3. "Optimise la fonction la plus lente" (Skill: Optimisation)
-4. [Bob utilise apply_diff] (Rule 4: Modifications ciblées)
-5. "Ajoute des tests de performance" (Skill: Tests)
+
+**Rules** : `.bob/rules.md`
+```markdown
+# Règles du Projet API E-commerce
+
+## Architecture
+- Layered architecture (Routes → Services → Repositories)
+- Pas de logique métier dans les routes
+
+## Sécurité
+- JWT pour l'authentification
+- Bcrypt pour les mots de passe
+- Validation stricte des entrées
+
+## Performance
+- Caching Redis pour les données fréquentes
+- Pagination obligatoire (max 100 items)
 ```
+
+**Résultat** : Bob appliquera automatiquement le formatage Black, utilisera FastAPI avec async/await, ET respectera votre architecture en couches et vos règles de sécurité.
 
 ---
 
-## 💡 Astuces Pro
+## 💡 Commandes Utiles
 
-### Pour Maximiser les Skills
-
-1. **Soyez spécifique** : "Analyse les performances" > "Analyse le code"
-2. **Combinez les skills** : "Analyse, puis refactorise, puis teste"
-3. **Demandez des explications** : "Pourquoi ce pattern ?"
-4. **Itérez** : Affinez progressivement
-
-### Pour Respecter les Rules
-
-1. **Anticipez** : Listez les fichiers à lire ensemble
-2. **Validez rapidement** : Ne bloquez pas le workflow
-3. **Préférez apply_diff** : Plus sûr et traçable
-4. **Donnez du contexte** : Expliquez l'objectif global
-
-### Commandes Magiques
+### Créer un Skill
 
 ```bash
-# Lecture optimale (Rule 3)
-"Lis @app.py, @models.py, @routes.py, @config.py et @utils.py ensemble"
+# Créer le répertoire
+mkdir -p .bob/skills
 
-# Analyse complète (Skill: Analyse)
-"Analyse @fichier.py en détail : code smells, performance, sécurité, lisibilité"
+# Créer un skill
+cat > .bob/skills/mon-skill.yaml << EOF
+name: "Mon Skill"
+version: "1.0.0"
+# Configuration...
+EOF
+```
 
-# Refactoring sûr (Skill: Refactoring + Rule 4)
-"Refactorise @code.py en utilisant apply_diff pour chaque modification"
+### Créer des Rules
 
-# Génération de qualité (Skill: Génération)
-"Crée une classe User avec type hints, validation, docstrings et tests"
+```bash
+# Créer le fichier rules
+cat > .bob/rules.md << EOF
+# Règles du Projet
 
-# Workflow complet
-"Lis le projet, analyse-le, propose un plan, puis applique les améliorations une par une"
+## Architecture
+...
+
+## Conventions
+...
+EOF
+```
+
+### Demander à Bob d'utiliser vos Skills/Rules
+
+```
+"Crée une API REST en respectant les skills et rules du projet"
+
+"Génère un service UserService qui suit nos conventions"
+
+"Refactorise ce code selon nos standards définis dans les skills"
 ```
 
 ---
 
-## 🎓 Checklist de Maîtrise
+## 📚 Exemples de Skills par Domaine
 
-### Skills
-- [ ] Je sais quand utiliser chaque skill
-- [ ] Je peux combiner plusieurs skills
-- [ ] Je demande des explications quand nécessaire
-- [ ] J'itère pour affiner les résultats
+### Langages
 
-### Rules
-- [ ] Je comprends pourquoi chaque rule existe
-- [ ] Je respecte le workflow de validation
-- [ ] J'utilise la lecture groupée efficacement
-- [ ] Je préfère les modifications ciblées
+- `python-best-practices.yaml` : Standards Python
+- `typescript-strict.yaml` : TypeScript en mode strict
+- `java-spring.yaml` : Conventions Spring Boot
 
-### Workflow
-- [ ] Je planifie mes interactions avec Bob
-- [ ] Je donne le contexte nécessaire
-- [ ] Je valide systématiquement
-- [ ] J'optimise mes demandes
+### Frameworks
+
+- `fastapi-development.yaml` : API REST avec FastAPI
+- `react-typescript.yaml` : React avec TypeScript
+- `django-rest.yaml` : Django REST Framework
+
+### Pratiques
+
+- `tdd-workflow.yaml` : Test-Driven Development
+- `clean-code.yaml` : Principes Clean Code
+- `security-first.yaml` : Sécurité en priorité
+
+### Outils
+
+- `git-workflow.yaml` : Workflow Git
+- `ci-cd-pipeline.yaml` : Pipeline CI/CD
+- `docker-compose.yaml` : Configuration Docker
 
 ---
 
-## 🚀 Aller Plus Loin
+## 📝 Templates
 
-### Ressources
-- Lab 1 : Découverte des outils de base
-- Lab 2 : Refactoring et design patterns
-- Lab 6 : Custom MCP Modes
-- Lab 7 : DevOps Automation
+### Template Skill Minimal
 
-### Pratique
-- Appliquez ces concepts à vos projets réels
-- Expérimentez avec différents workflows
-- Partagez vos découvertes
+```yaml
+name: "Nom du Skill"
+description: "Description courte"
+version: "1.0.0"
+
+# Ajoutez votre configuration ici
+```
+
+### Template Skill Complet
+
+```yaml
+name: "Nom du Skill"
+description: "Description détaillée"
+version: "1.0.0"
+author: "Votre Nom"
+tags: ["python", "api", "fastapi"]
+
+# Configuration
+language: python
+framework: fastapi
+
+# Outils
+tools:
+  formatter: black
+  linter: ruff
+  test_framework: pytest
+
+# Conventions
+conventions:
+  - "Convention 1"
+  - "Convention 2"
+
+# Patterns
+patterns:
+  - name: "Pattern Name"
+    description: "Description"
+
+# Ce qu'il faut éviter
+avoid:
+  - "Anti-pattern 1"
+  - "Anti-pattern 2"
+```
+
+### Template Rules Minimal
+
+```markdown
+# Règles du Projet
+
+## Architecture
+[Description]
+
+## Conventions
+[Liste des conventions]
+
+## Bonnes Pratiques
+[Ce qu'il faut faire]
+```
+
+### Template Rules Complet
+
+```markdown
+# Règles du Projet [Nom]
+
+## 📋 Vue d'Ensemble
+[Description du projet]
+
+## 🏗️ Architecture
+[Architecture technique]
+
+## 📝 Conventions de Code
+### Nommage
+[Conventions de nommage]
+
+### Style
+[Style de code]
+
+## 🔒 Sécurité
+[Règles de sécurité]
+
+## 🧪 Tests
+[Stratégie de tests]
+
+## 📊 Base de Données
+[Conventions DB]
+
+## ⚡ Performance
+[Optimisations]
+
+## ❌ Ce qu'il faut ÉVITER
+[Anti-patterns]
+
+## ✅ Checklist
+[Checklist avant commit]
+```
+
+---
+
+## 🎓 Bonnes Pratiques
+
+### Pour les Skills
+
+1. **Un skill = un domaine** : Ne mélangez pas Python et React dans le même skill
+2. **Versionnez** : Utilisez semantic versioning (1.0.0, 1.1.0, 2.0.0)
+3. **Documentez** : Ajoutez une description claire
+4. **Testez** : Vérifiez que Bob applique bien le skill
+5. **Partagez** : Créez une bibliothèque d'équipe
+
+### Pour les Rules
+
+1. **Soyez spécifique** : "Utiliser FastAPI" > "Utiliser un framework"
+2. **Soyez concis** : Évitez les pavés de texte
+3. **Priorisez** : Mettez les règles importantes en premier
+4. **Illustrez** : Donnez des exemples concrets
+5. **Maintenez** : Mettez à jour avec le projet
+
+### Pour l'Intégration
+
+1. **Commencez simple** : Un skill + quelques rules
+2. **Itérez** : Ajoutez progressivement
+3. **Mesurez** : Vérifiez l'impact sur la qualité
+4. **Documentez** : Expliquez à l'équipe
+5. **Évoluez** : Adaptez selon les besoins
+
+---
+
+## 🚀 Workflow Recommandé
+
+### 1. Nouveau Projet
+
+```bash
+# Créer la structure
+mkdir -p .bob/skills
+touch .bob/rules.md
+
+# Créer un skill de base
+# Écrire les rules initiales
+# Tester avec Bob
+```
+
+### 2. Projet Existant
+
+```bash
+# Analyser le code existant
+# Identifier les patterns
+# Créer des skills correspondants
+# Documenter dans rules.md
+```
+
+### 3. Équipe
+
+```bash
+# Créer un repo de skills partagés
+# Définir des rules communes
+# Documenter l'utilisation
+# Former l'équipe
+```
+
+---
+
+## 🔍 Debugging
+
+### Bob n'applique pas mon skill
+
+✅ Vérifiez que le fichier est dans `.bob/skills/`  
+✅ Vérifiez la syntaxe YAML  
+✅ Vérifiez que le skill est pertinent pour la tâche  
+✅ Demandez explicitement : "en utilisant le skill X"
+
+### Bob ignore mes rules
+
+✅ Vérifiez que le fichier est `.bob/rules.md`  
+✅ Vérifiez que les rules sont claires  
+✅ Soyez plus spécifique dans vos demandes  
+✅ Rappelez les rules : "selon nos rules"
+
+### Conflit entre skill et rules
+
+✅ Les rules sont plus spécifiques et prioritaires  
+✅ Clarifiez dans les rules en cas de conflit  
+✅ Mettez à jour le skill si nécessaire
+
+---
+
+## 📚 Ressources
+
+### Documentation Officielle
+
+- **Skills** : https://internal.bob.ibm.com/docs/ide/features/skills
+- **Rules** : https://internal.bob.ibm.com/docs/ide/configuration/rules
+- **Configuration** : https://internal.bob.ibm.com/docs/ide/configuration
+
+### Exemples
+
+Consultez le dossier `exemples/` du lab :
+- `exemples/skills/` : Skills pour Python, FastAPI, etc.
+- `exemples/rules/` : Rules pour différents types de projets
+
+### Vidéos
+
+- [Compétences vs modes vs règles](https://www.youtube.com/watch?v=example)
+
+---
+
+## 🎯 Checklist de Maîtrise
+
+### Skills
+- [ ] Je comprends ce qu'est un skill
+- [ ] Je sais créer un fichier skill YAML
+- [ ] Je peux définir des configurations techniques
+- [ ] Je sais créer des workflows
+- [ ] Je comprends comment partager des skills
+
+### Rules
+- [ ] Je comprends ce qu'est le fichier rules.md
+- [ ] Je sais écrire des rules claires
+- [ ] Je peux définir l'architecture
+- [ ] Je sais spécifier des conventions
+- [ ] Je comprends comment les rules influencent Bob
+
+### Intégration
+- [ ] Je peux combiner skills et rules
+- [ ] Je sais créer une configuration complète
+- [ ] Je comprends les bénéfices
+- [ ] Je peux créer des configurations réutilisables
+
+---
+
+## 💬 FAQ
+
+**Q: Quelle est la différence entre skills et rules ?**  
+R: Skills = configuration technique (YAML), Rules = instructions contextuelles (Markdown)
+
+**Q: Puis-je avoir plusieurs skills ?**  
+R: Oui ! Créez un skill par domaine (langage, framework, pratique)
+
+**Q: Les rules remplacent-elles les skills ?**  
+R: Non, ils sont complémentaires. Skills = "comment", Rules = "pourquoi et quoi"
+
+**Q: Comment partager mes skills avec l'équipe ?**  
+R: Créez un repo Git avec vos skills et clonez-le dans `.bob/skills/`
+
+**Q: Bob utilise-t-il toujours mes skills/rules ?**  
+R: Oui, automatiquement. Vous pouvez aussi les mentionner explicitement.
 
 ---
 

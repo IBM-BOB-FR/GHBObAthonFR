@@ -1,8 +1,8 @@
-# 🎯 Lab 8 : Skills et Rules - Les Super-Pouvoirs de Bob
+# 🎯 Lab 8 : Skills et Rules - Personnaliser Bob
 
-> **Durée estimée** : 45-60 minutes  
-> **Difficulté** : ⭐⭐ Intermédiaire  
-> **Objectif** : Maîtriser les fonctionnalités avancées "skills" et "rules" de Bob
+> **Durée estimée** : 45-60 minutes
+> **Difficulté** : ⭐⭐⭐ Avancé
+> **Objectif** : Maîtriser la configuration avancée de Bob avec Skills et Rules
 
 ---
 
@@ -10,40 +10,82 @@
 
 À la fin de ce lab, vous serez capable de :
 
-- ✅ Comprendre comment Bob utilise ses "skills" (compétences)
-- ✅ Exploiter les "rules" (règles) pour guider Bob
-- ✅ Optimiser vos interactions avec Bob
-- ✅ Créer des workflows efficaces
-- ✅ Utiliser les capacités avancées de Bob
+- ✅ Comprendre ce que sont les **Skills** dans Bob (fichiers de configuration `.bob/skills/`)
+- ✅ Créer et configurer des **Skills** personnalisés
+- ✅ Utiliser le fichier **Rules** (`.bob/rules.md`) pour personnaliser le comportement de Bob
+- ✅ Combiner Skills et Rules pour des workflows optimisés
+- ✅ Créer des configurations réutilisables pour votre équipe
+
+---
+
+## 🔧 Prérequis Techniques
+
+- Python 3.8+ installé
+- (Optionnel) PyYAML pour valider les fichiers : `pip install pyyaml`
+- Éditeur de texte avec support YAML (VS Code recommandé)
 
 ---
 
 ## 🧠 Qu'est-ce que les "Skills" de Bob ?
 
-Les **skills** sont les compétences intégrées de Bob qui lui permettent de :
+Les **Skills** sont des fichiers de configuration YAML situés dans `.bob/skills/` qui permettent de :
 
-1. **Analyser du code** : Comprendre la structure, identifier les problèmes
-2. **Générer du code** : Créer du code de qualité dans plusieurs langages
-3. **Refactorer** : Améliorer le code existant sans changer son comportement
-4. **Tester** : Créer et exécuter des tests
-5. **Documenter** : Générer de la documentation claire
-6. **Déboguer** : Identifier et corriger les bugs
-7. **Optimiser** : Améliorer les performances
-8. **Architecturer** : Concevoir des solutions robustes
+1. **Définir des comportements spécifiques** : Créer des compétences personnalisées pour Bob
+2. **Configurer des outils** : Définir comment Bob utilise certains outils
+3. **Créer des workflows** : Automatiser des séquences d'actions
+4. **Partager des configurations** : Réutiliser des skills dans plusieurs projets
+
+### Structure d'un Skill
+
+```yaml
+# .bob/skills/mon-skill.yaml
+name: "Mon Skill Personnalisé"
+description: "Description de ce que fait ce skill"
+version: "1.0.0"
+
+# Configuration du skill
+config:
+  # Paramètres spécifiques
+```
+
+**Documentation officielle** : https://internal.bob.ibm.com/docs/ide/features/skills
 
 ---
 
 ## 📏 Qu'est-ce que les "Rules" de Bob ?
 
-Les **rules** sont les règles de fonctionnement de Bob :
+Le fichier **Rules** (`.bob/rules.md`) contient des instructions personnalisées en langage naturel qui modifient le comportement de Bob :
 
-1. **Un outil par message** : Bob utilise exactement un outil à la fois
-2. **Validation systématique** : Vous devez confirmer chaque action
-3. **Lecture groupée** : Bob peut lire jusqu'à 5 fichiers simultanément
-4. **Modifications ciblées** : Préférence pour `apply_diff` sur `write_to_file`
-5. **Clarté avant action** : Bob pose des questions si besoin
-6. **Pas de suppositions** : Bob attend la confirmation avant de continuer
-7. **Contexte complet** : Bob lit tous les fichiers nécessaires avant de modifier
+1. **Instructions globales** : Comment Bob doit se comporter dans votre projet
+2. **Préférences de code** : Conventions, styles, patterns à utiliser
+3. **Contraintes** : Ce que Bob doit éviter ou toujours faire
+4. **Contexte projet** : Informations spécifiques à votre projet
+
+### Exemple de Rules
+
+```markdown
+# .bob/rules.md
+
+## Conventions de Code
+
+- Toujours utiliser TypeScript strict mode
+- Préférer les functional components en React
+- Utiliser Prettier avec la config du projet
+
+## Architecture
+
+- Suivre l'architecture hexagonale
+- Séparer la logique métier des frameworks
+- Utiliser des interfaces pour les dépendances
+
+## Tests
+
+- Minimum 80% de couverture de code
+- Utiliser Jest pour les tests unitaires
+- Créer des tests d'intégration pour les API
+```
+
+**Documentation officielle** : https://internal.bob.ibm.com/docs/ide/configuration/rules
 
 ---
 
@@ -51,9 +93,9 @@ Les **rules** sont les règles de fonctionnement de Bob :
 
 ### Prérequis
 
-- Avoir complété les Labs 1 et 2
-- Comprendre les bases de Python
-- Environnement virtuel activé
+- Avoir complété les Labs 0, 1 et 2
+- Comprendre les bases de YAML
+- Avoir un projet avec Bob configuré
 
 ### Structure du Lab
 
@@ -61,359 +103,373 @@ Les **rules** sont les règles de fonctionnement de Bob :
 lab8-skills-et-rules/
 ├── README.md (ce fichier)
 ├── exercices/
-│   ├── ex1-skills-analyse/
-│   ├── ex2-skills-generation/
-│   ├── ex3-rules-workflow/
-│   └── ex4-optimisation/
-└── solutions/ (à créer par Bob)
+│   ├── ex1-premier-skill/
+│   ├── ex2-rules-personnalises/
+│   ├── ex3-skill-avance/
+│   └── ex4-workflow-complet/
+├── exemples/
+│   ├── skills/
+│   └── rules/
+└── solutions/
 ```
 
 ---
 
-## 📝 Exercice 1 : Skills - Analyse de Code (15 min)
+## 📝 Exercice 1 : Créer Votre Premier Skill (15 min)
 
 ### Objectif
 
-Découvrir comment Bob analyse et comprend le code.
+Créer un skill simple qui définit des préférences de code pour Python.
 
 ### Instructions
 
-1. **Créez un fichier avec du code problématique** :
+1. **Créez la structure de base** :
 
 ```
-Crée exercices/ex1-skills-analyse/messy_code.py avec ce contenu :
-
-def calc(a,b,c):
-    x=a+b
-    y=x*c
-    z=y/2
-    return z
-
-def process(data):
-    result=[]
-    for i in range(len(data)):
-        if data[i]>0:
-            result.append(data[i]*2)
-    return result
-
-class User:
-    def __init__(self,n,e,a):
-        self.n=n
-        self.e=e
-        self.a=a
-    def get_info(self):
-        return self.n+' '+self.e+' '+str(self.a)
+Crée le répertoire .bob/skills/ dans exercices/ex1-premier-skill/
 ```
 
-2. **Demandez une analyse complète** :
+2. **Créez votre premier skill** :
 
 ```
-Analyse @messy_code.py et identifie TOUS les problèmes :
-- Nommage
-- Style (PEP 8)
-- Lisibilité
-- Performance
-- Bonnes pratiques
-- Documentation manquante
+Crée .bob/skills/python-style.yaml avec :
 
-Pour chaque problème, explique pourquoi c'est un problème et comment le corriger.
+name: "Python Style Guide"
+description: "Préférences de style pour le code Python"
+version: "1.0.0"
+
+preferences:
+  language: python
+  style_guide: "PEP 8"
+  type_hints: required
+  docstring_style: "Google"
+  max_line_length: 88
+  formatter: "black"
+  linter: "ruff"
+  
+conventions:
+  - "Utiliser des noms descriptifs pour les variables"
+  - "Préférer les list comprehensions aux boucles simples"
+  - "Toujours ajouter des type hints"
+  - "Documenter toutes les fonctions publiques"
 ```
 
-3. **Observez les skills de Bob** :
-   - Analyse syntaxique
-   - Détection de code smells
-   - Suggestions d'amélioration
-   - Explications pédagogiques
+3. **Testez le skill** :
+
+```
+Crée un fichier test.py et demande à Bob de générer une fonction
+qui respecte les conventions du skill python-style.yaml
+```
 
 ### ✅ Critères de Validation
 
-- [ ] Bob identifie au moins 10 problèmes différents
-- [ ] Les explications sont claires et détaillées
-- [ ] Bob propose des solutions concrètes
-- [ ] Vous comprenez chaque problème identifié
+- [ ] Le fichier skill est créé dans `.bob/skills/`
+- [ ] Le skill contient toutes les préférences
+- [ ] Bob génère du code conforme au skill
+- [ ] Vous comprenez comment les skills influencent Bob
 
 ### 💡 Points Clés
 
-Bob utilise ses **skills d'analyse** pour :
-- Détecter les violations de conventions
-- Identifier les anti-patterns
-- Suggérer des améliorations
-- Expliquer le "pourquoi" derrière chaque recommandation
+Les **Skills** permettent de :
+- Définir des standards de code
+- Automatiser l'application de conventions
+- Partager des configurations dans l'équipe
+- Maintenir la cohérence du code
 
 ---
 
-## 🔨 Exercice 2 : Skills - Génération de Code (15 min)
+## 🔨 Exercice 2 : Configurer des Rules Personnalisées (15 min)
 
 ### Objectif
 
-Explorer comment Bob génère du code de qualité.
+Créer un fichier `.bob/rules.md` qui guide Bob dans votre projet.
 
 ### Instructions
 
-1. **Demandez à Bob de créer une application complète** :
+1. **Créez le fichier Rules** :
 
 ```
-Crée une application de gestion de tâches dans exercices/ex2-skills-generation/ avec :
+Crée .bob/rules.md dans exercices/ex2-rules-personnalises/ avec :
 
-1. Un modèle Task avec :
-   - id (UUID)
-   - title (str)
-   - description (str)
-   - status (enum: TODO, IN_PROGRESS, DONE)
-   - priority (enum: LOW, MEDIUM, HIGH)
-   - created_at (datetime)
-   - updated_at (datetime)
+# Règles du Projet
 
-2. Un TaskManager avec :
-   - Ajouter une tâche
-   - Modifier une tâche
-   - Supprimer une tâche
-   - Lister les tâches (avec filtres par status et priority)
-   - Marquer comme terminée
-   - Statistiques (nombre par status, par priority)
+## Architecture
 
-3. Exigences de qualité :
-   - Type hints partout
-   - Docstrings Google style
+Ce projet suit une architecture en couches :
+- **Présentation** : API REST avec FastAPI
+- **Métier** : Logique dans des services
+- **Données** : Repository pattern avec SQLAlchemy
+
+## Conventions de Nommage
+
+- Classes : PascalCase (ex: UserService)
+- Fonctions : snake_case (ex: get_user_by_id)
+- Constantes : UPPER_SNAKE_CASE (ex: MAX_RETRY_COUNT)
+- Fichiers : snake_case (ex: user_service.py)
+
+## Bonnes Pratiques
+
+- Toujours valider les entrées utilisateur
+- Utiliser des exceptions personnalisées
+- Logger les erreurs avec le contexte
+- Écrire des tests pour chaque nouvelle fonctionnalité
+
+## Ce qu'il faut éviter
+
+- Pas de logique métier dans les routes
+- Pas de requêtes SQL directes (utiliser les repositories)
+- Pas de secrets en dur dans le code
+- Pas de print() pour le debug (utiliser logging)
+```
+
+2. **Testez les Rules** :
+
+```
+Demande à Bob de créer un service UserService qui :
+- Récupère un utilisateur par ID
+- Valide les données
+- Gère les erreurs
+- Respecte les rules du projet
+```
+
+3. **Observez le comportement** :
+
+Bob devrait automatiquement :
+- Suivre l'architecture en couches
+- Utiliser les conventions de nommage
+- Appliquer les bonnes pratiques
+- Éviter les anti-patterns listés
+
+### ✅ Critères de Validation
+
+- [ ] Le fichier `.bob/rules.md` est créé
+- [ ] Les rules couvrent architecture, conventions et bonnes pratiques
+- [ ] Bob respecte les rules dans le code généré
+- [ ] Vous comprenez comment les rules influencent Bob
+
+### 💡 Points Clés
+
+Les **Rules** permettent de :
+- Communiquer le contexte du projet à Bob
+- Définir des standards spécifiques
+- Éviter les erreurs courantes
+- Maintenir la cohérence architecturale
+
+---
+
+## 📏 Exercice 3 : Skill Avancé avec Workflow (15 min)
+
+### Objectif
+
+Créer un skill qui définit un workflow complet pour le développement.
+
+### Instructions
+
+1. **Créez un skill de workflow** :
+
+```
+Crée .bob/skills/tdd-workflow.yaml dans exercices/ex3-skill-avance/ avec :
+
+name: "TDD Workflow"
+description: "Workflow Test-Driven Development"
+version: "1.0.0"
+
+workflow:
+  steps:
+    - name: "Écrire le test"
+      description: "Créer un test qui échoue"
+      action: "create_test"
+      
+    - name: "Implémenter"
+      description: "Écrire le code minimal pour passer le test"
+      action: "implement_feature"
+      
+    - name: "Refactorer"
+      description: "Améliorer le code sans casser les tests"
+      action: "refactor_code"
+      
+    - name: "Documenter"
+      description: "Ajouter la documentation"
+      action: "add_documentation"
+
+test_framework: "pytest"
+coverage_minimum: 80
+
+conventions:
+  - "Red-Green-Refactor cycle"
+  - "Un test par comportement"
+  - "Tests lisibles et maintenables"
+  - "Mocks pour les dépendances externes"
+```
+
+2. **Utilisez le workflow** :
+
+```
+Demande à Bob de créer une fonctionnalité "calculer la moyenne d'une liste"
+en suivant le workflow TDD défini dans tdd-workflow.yaml
+```
+
+3. **Observez le processus** :
+
+Bob devrait :
+- Créer d'abord les tests
+- Implémenter le code minimal
+- Refactorer si nécessaire
+- Ajouter la documentation
+
+### ✅ Critères de Validation
+
+- [ ] Le skill workflow est créé
+- [ ] Bob suit les étapes du workflow
+- [ ] Les tests sont créés en premier
+- [ ] Le code est refactoré et documenté
+- [ ] La couverture atteint le minimum requis
+
+### 💡 Points Clés
+
+Les **Skills avancés** permettent de :
+- Définir des workflows complexes
+- Automatiser des processus de développement
+- Garantir la qualité du code
+- Former l'équipe aux bonnes pratiques
+
+---
+
+## 🎯 Exercice 4 : Workflow Complet avec Skills et Rules (15 min)
+
+### Objectif
+
+Combiner Skills et Rules pour créer un environnement de développement optimal.
+
+### Instructions
+
+1. **Créez une configuration complète** :
+
+```
+Dans exercices/ex4-workflow-complet/, crée :
+
+1. .bob/skills/api-development.yaml :
+   - Standards pour les API REST
    - Validation des données
-   - Gestion d'erreurs avec exceptions personnalisées
-   - Tests unitaires complets (pytest)
-   - Logging approprié
+   - Gestion d'erreurs
+   - Documentation OpenAPI
 
-4. Fichiers à créer :
-   - models.py (modèles de données)
-   - manager.py (logique métier)
-   - exceptions.py (exceptions personnalisées)
-   - test_manager.py (tests)
-   - README.md (documentation)
+2. .bob/skills/security.yaml :
+   - Bonnes pratiques de sécurité
+   - Validation des entrées
+   - Authentification/Autorisation
+   - Protection contre les vulnérabilités courantes
+
+3. .bob/rules.md :
+   - Architecture du projet
+   - Stack technique (FastAPI, PostgreSQL, Redis)
+   - Conventions de l'équipe
+   - Processus de review
 ```
 
-2. **Observez les skills de génération** :
-   - Structure du code
-   - Qualité du code généré
-   - Respect des bonnes pratiques
-   - Documentation intégrée
-
-3. **Testez l'application** :
+2. **Créez une API complète** :
 
 ```
-Exécute les tests et montre-moi les résultats
-```
-
-### ✅ Critères de Validation
-
-- [ ] Code généré de haute qualité
-- [ ] Type hints et docstrings présents
-- [ ] Tests passent avec succès
-- [ ] Architecture claire et maintenable
-- [ ] Documentation complète
-
-### 💡 Points Clés
-
-Bob utilise ses **skills de génération** pour :
-- Créer du code structuré et propre
-- Appliquer automatiquement les bonnes pratiques
-- Générer des tests pertinents
-- Produire de la documentation claire
-
----
-
-## 📏 Exercice 3 : Rules - Workflow Optimal (15 min)
-
-### Objectif
-
-Comprendre et appliquer les règles de Bob pour un workflow efficace.
-
-### Instructions
-
-1. **Créez un scénario complexe** :
-
-```
-Crée exercices/ex3-rules-workflow/ avec une API REST Flask :
-
-Structure :
-- app.py (application Flask)
-- models.py (modèles SQLAlchemy)
-- routes.py (endpoints)
-- config.py (configuration)
-- requirements.txt
-
-L'API doit gérer des articles de blog avec :
+Demande à Bob de créer une API REST pour gérer des articles de blog avec :
 - CRUD complet
 - Authentification JWT
 - Validation des données
-- Tests d'API
+- Tests unitaires et d'intégration
+- Documentation OpenAPI
+- Respect de tous les skills et rules
 ```
 
-2. **Observez comment Bob applique ses rules** :
+3. **Analysez le résultat** :
 
-   **Rule 1 : Un outil par message**
-   - Bob crée un fichier à la fois
-   - Vous validez chaque étape
-
-   **Rule 2 : Lecture groupée**
-   - Demandez : "Lis tous les fichiers de l'API ensemble"
-   - Bob lit jusqu'à 5 fichiers en une fois
-
-   **Rule 3 : Modifications ciblées**
-   - Demandez une modification : "Ajoute un endpoint de recherche"
-   - Bob utilise `apply_diff` pour des changements précis
-
-3. **Testez le workflow optimal** :
-
-```
-Maintenant, améliore l'API en ajoutant :
-- Pagination sur la liste des articles
-- Filtrage par catégorie
-- Tri par date ou popularité
-
-Utilise le workflow le plus efficace possible.
-```
-
-4. **Analysez le processus** :
-   - Combien d'étapes Bob a-t-il utilisées ?
-   - A-t-il lu les fichiers nécessaires avant de modifier ?
-   - A-t-il utilisé les bons outils ?
+Vérifiez que Bob a :
+- Suivi l'architecture définie dans rules.md
+- Appliqué les standards de api-development.yaml
+- Implémenté les pratiques de security.yaml
+- Créé un code cohérent et de qualité
 
 ### ✅ Critères de Validation
 
-- [ ] Bob respecte la règle "un outil par message"
-- [ ] Bob lit les fichiers nécessaires avant de modifier
-- [ ] Bob utilise `apply_diff` pour les modifications ciblées
-- [ ] Le workflow est efficace et logique
-- [ ] Vous comprenez pourquoi chaque rule existe
+- [ ] Tous les skills et rules sont créés
+- [ ] L'API est complète et fonctionnelle
+- [ ] Les standards de sécurité sont appliqués
+- [ ] Les tests passent avec succès
+- [ ] La documentation est complète
+- [ ] Vous comprenez la synergie Skills + Rules
 
 ### 💡 Points Clés
 
-Les **rules de Bob** garantissent :
-- **Sécurité** : Validation avant chaque action
-- **Efficacité** : Lecture groupée pour le contexte
-- **Précision** : Modifications ciblées pour éviter les erreurs
-- **Clarté** : Un outil = une action = facile à suivre
+La **combinaison Skills + Rules** permet :
+- **Cohérence** : Standards appliqués automatiquement
+- **Qualité** : Bonnes pratiques intégrées
+- **Productivité** : Moins de décisions à prendre
+- **Collaboration** : Configuration partagée dans l'équipe
 
 ---
 
-## 🎯 Exercice 4 : Optimisation - Combiner Skills et Rules (15 min)
-
-### Objectif
-
-Maîtriser l'utilisation combinée des skills et rules pour un résultat optimal.
-
-### Instructions
-
-1. **Créez un projet legacy** :
-
-```
-Crée exercices/ex4-optimisation/legacy/ avec :
-
-1. Un fichier data_processor.py mal écrit :
-   - Pas de type hints
-   - Fonctions trop longues
-   - Code dupliqué
-   - Pas de tests
-   - Pas de documentation
-
-2. Un fichier api.py avec :
-   - Endpoints non sécurisés
-   - Pas de validation
-   - Gestion d'erreurs basique
-   - Performance non optimisée
-```
-
-2. **Demandez une refonte complète** :
-
-```
-Je veux refactorer complètement ce projet en utilisant tes meilleurs skills.
-
-Étape 1 : Analyse
-- Lis tous les fichiers ensemble
-- Identifie tous les problèmes
-- Propose un plan de refactoring détaillé
-
-Étape 2 : Refactoring
-- Applique les améliorations par ordre de priorité
-- Utilise les design patterns appropriés
-- Ajoute tests et documentation
-
-Étape 3 : Optimisation
-- Améliore les performances
-- Ajoute du caching si pertinent
-- Optimise les requêtes
-
-Étape 4 : Documentation
-- Crée un BEFORE_AFTER.md comparant l'ancien et le nouveau code
-- Documente les choix d'architecture
-- Explique les améliorations de performance
-```
-
-3. **Observez la synergie skills + rules** :
-   - Bob lit tous les fichiers (rule : lecture groupée)
-   - Bob analyse en profondeur (skill : analyse)
-   - Bob propose un plan (skill : architecture)
-   - Bob applique les changements un par un (rule : un outil par message)
-   - Bob valide à chaque étape (rule : validation)
-
-### ✅ Critères de Validation
-
-- [ ] Analyse complète et pertinente
-- [ ] Plan de refactoring logique
-- [ ] Refactoring appliqué avec succès
-- [ ] Tests passent
-- [ ] Documentation claire des améliorations
-- [ ] Vous comprenez comment skills et rules travaillent ensemble
-
-### 💡 Points Clés
-
-La **combinaison skills + rules** permet :
-- **Qualité** : Skills assurent l'excellence technique
-- **Sécurité** : Rules assurent le contrôle et la validation
-- **Efficacité** : Workflow optimisé
-- **Confiance** : Vous gardez le contrôle à chaque étape
-
----
-
-## 🎓 Exercice Bonus : Créer Votre Propre Workflow (Optionnel)
+## 🎓 Exercice Bonus : Skills Réutilisables (Optionnel)
 
 ### Mission
 
-Créez un workflow personnalisé qui exploite au maximum les skills et rules de Bob.
+Créer une bibliothèque de skills réutilisables pour votre équipe.
 
 ### Instructions
 
 ```
-Crée un projet de ton choix dans exercices/bonus/ qui :
+Crée exercices/bonus/skill-library/ avec :
 
-1. Utilise au moins 5 skills différents de Bob :
-   - Analyse
-   - Génération
-   - Refactoring
-   - Tests
-   - Documentation
-   - Optimisation
-   - Architecture
-   - Débogage
+1. skills/languages/
+   - python.yaml
+   - typescript.yaml
+   - java.yaml
 
-2. Respecte toutes les rules de Bob :
-   - Un outil par message
-   - Validation systématique
-   - Lecture groupée
-   - Modifications ciblées
-   - Clarté avant action
+2. skills/frameworks/
+   - fastapi.yaml
+   - react.yaml
+   - spring-boot.yaml
 
-3. Documente ton workflow dans WORKFLOW.md :
-   - Étapes suivies
-   - Skills utilisés à chaque étape
-   - Rules appliquées
-   - Résultats obtenus
-   - Leçons apprises
+3. skills/practices/
+   - tdd.yaml
+   - clean-code.yaml
+   - security.yaml
+
+4. templates/
+   - rules-template.md
+   - skill-template.yaml
+
+5. README.md :
+   - Comment utiliser la bibliothèque
+   - Comment contribuer
+   - Exemples d'utilisation
 ```
 
-### Exemples de Projets
+### Exemples de Skills
 
-- **API de recommandation** : ML + API + Tests
-- **Système de monitoring** : Logging + Métriques + Dashboard
-- **CLI avancé** : Parsing + Validation + Help
-- **Microservice** : Docker + K8s + CI/CD
+**Python Skill** :
+```yaml
+name: "Python Best Practices"
+version: "1.0.0"
+language: python
+formatter: black
+linter: ruff
+type_checker: mypy
+test_framework: pytest
+conventions:
+  - "PEP 8 compliance"
+  - "Type hints required"
+  - "Google-style docstrings"
+```
+
+**FastAPI Skill** :
+```yaml
+name: "FastAPI Development"
+version: "1.0.0"
+framework: fastapi
+patterns:
+  - "Dependency injection"
+  - "Pydantic models for validation"
+  - "Async/await for I/O operations"
+  - "OpenAPI documentation"
+```
 
 ---
 
@@ -421,182 +477,201 @@ Crée un projet de ton choix dans exercices/bonus/ qui :
 
 Vérifiez que vous maîtrisez :
 
-### Skills de Bob
+### Skills
 
-- [ ] Je comprends comment Bob analyse le code
-- [ ] Je sais exploiter ses capacités de génération
-- [ ] Je peux lui demander de refactorer efficacement
-- [ ] Je comprends ses skills de test et documentation
-- [ ] Je sais quand utiliser quel skill
+- [ ] Je comprends ce qu'est un skill dans Bob
+- [ ] Je sais créer un fichier skill YAML
+- [ ] Je peux définir des préférences et conventions
+- [ ] Je sais créer des workflows avec les skills
+- [ ] Je comprends comment partager des skills
 
-### Rules de Bob
+### Rules
 
-- [ ] Je comprends pourquoi "un outil par message"
-- [ ] Je sais utiliser la lecture groupée (5 fichiers max)
-- [ ] Je préfère apply_diff pour les modifications
-- [ ] Je valide systématiquement les actions
-- [ ] Je fournis le contexte nécessaire
+- [ ] Je comprends ce qu'est le fichier rules.md
+- [ ] Je sais écrire des rules claires et efficaces
+- [ ] Je peux définir l'architecture dans les rules
+- [ ] Je sais spécifier des conventions d'équipe
+- [ ] Je comprends comment les rules influencent Bob
 
-### Workflow
+### Intégration
 
-- [ ] Je peux créer un workflow efficace
-- [ ] Je combine skills et rules intelligemment
-- [ ] Je garde le contrôle du processus
-- [ ] Je sais optimiser mes interactions avec Bob
+- [ ] Je peux combiner skills et rules efficacement
+- [ ] Je sais créer une configuration de projet complète
+- [ ] Je comprends les bénéfices pour l'équipe
+- [ ] Je peux créer des configurations réutilisables
 
 ---
 
 ## 🎓 Ce que Vous Avez Appris
 
-### Les 8 Skills Principaux de Bob
+### Skills (.bob/skills/*.yaml)
 
-1. **Analyse** 🔍
-   - Détection de code smells
-   - Identification de problèmes
-   - Suggestions d'amélioration
+**Définition** : Fichiers de configuration YAML qui définissent des comportements spécifiques
 
-2. **Génération** ✨
-   - Code de qualité
-   - Respect des conventions
-   - Documentation intégrée
+**Utilisations** :
+- Standards de code par langage
+- Workflows de développement
+- Configurations d'outils
+- Patterns et pratiques
 
-3. **Refactoring** 🔧
-   - Amélioration sans casser
-   - Design patterns
-   - Optimisation
+**Avantages** :
+- Réutilisables entre projets
+- Partageables dans l'équipe
+- Versionnables avec Git
+- Faciles à maintenir
 
-4. **Tests** 🧪
-   - Tests unitaires
-   - Tests d'intégration
-   - Couverture de code
+### Rules (.bob/rules.md)
 
-5. **Documentation** 📚
-   - Docstrings
-   - README
-   - Architecture
+**Définition** : Fichier Markdown avec des instructions en langage naturel
 
-6. **Débogage** 🐛
-   - Identification de bugs
-   - Correction
-   - Prévention
+**Utilisations** :
+- Architecture du projet
+- Conventions d'équipe
+- Contexte spécifique
+- Contraintes et préférences
 
-7. **Optimisation** ⚡
-   - Performance
-   - Mémoire
-   - Scalabilité
+**Avantages** :
+- Flexibles et expressifs
+- Faciles à lire et écrire
+- Adaptables au contexte
+- Évolutifs avec le projet
 
-8. **Architecture** 🏗️
-   - Design de solutions
-   - Patterns
-   - Best practices
+### Synergie Skills + Rules
 
-### Les 7 Rules Essentielles
-
-1. **Un outil par message** : Clarté et contrôle
-2. **Validation systématique** : Sécurité
-3. **Lecture groupée** : Contexte complet
-4. **Modifications ciblées** : Précision
-5. **Clarté avant action** : Pas de suppositions
-6. **Pas de suppositions** : Questions si besoin
-7. **Contexte complet** : Lecture avant modification
+```
+Skills (YAML)          Rules (Markdown)
+     ↓                       ↓
+Configuration          Instructions
+structurée             en langage naturel
+     ↓                       ↓
+        ↘               ↙
+          Bob Personnalisé
+                ↓
+        Code de Qualité
+```
 
 ---
 
-## 💡 Conseils pour Maximiser Bob
+## 💡 Bonnes Pratiques
 
 ### Pour les Skills
 
-1. **Soyez spécifique** : "Analyse les performances" vs "Analyse le code"
-2. **Demandez des explications** : "Pourquoi ce pattern ?"
-3. **Itérez** : Affinez progressivement
-4. **Combinez** : Utilisez plusieurs skills ensemble
+1. **Soyez spécifique** : Un skill = un domaine précis
+2. **Versionnez** : Utilisez semantic versioning
+3. **Documentez** : Ajoutez description et exemples
+4. **Testez** : Vérifiez que le skill fonctionne comme prévu
+5. **Partagez** : Créez une bibliothèque d'équipe
 
 ### Pour les Rules
 
-1. **Anticipez** : Listez les fichiers à lire ensemble
-2. **Validez rapidement** : Ne bloquez pas le workflow
-3. **Utilisez apply_diff** : Plus sûr que write_to_file
-4. **Donnez du contexte** : Expliquez l'objectif global
+1. **Soyez clair** : Utilisez un langage simple et direct
+2. **Soyez concis** : Évitez les règles trop longues
+3. **Priorisez** : Mettez les règles importantes en premier
+4. **Illustrez** : Donnez des exemples concrets
+5. **Maintenez** : Mettez à jour avec l'évolution du projet
 
-### Workflow Optimal
+### Pour l'Intégration
 
+1. **Commencez simple** : Un skill et quelques rules
+2. **Itérez** : Ajoutez progressivement
+3. **Mesurez** : Vérifiez l'impact sur la qualité
+4. **Ajustez** : Adaptez selon les retours
+5. **Partagez** : Documentez pour l'équipe
+---
+
+## ✅ Validation de Votre Travail
+
+### Vérifier un Skill YAML
+
+```bash
+# Installer PyYAML si nécessaire
+pip install pyyaml
+
+# Valider un fichier YAML
+python3 -c "import yaml; print('✅ YAML valide' if yaml.safe_load(open('.bob/skills/mon-skill.yaml')) else '❌ YAML invalide')"
 ```
-1. Analyse (skill) → Lecture groupée (rule)
-2. Plan (skill) → Validation (rule)
-3. Implémentation (skill) → Un outil par message (rule)
-4. Tests (skill) → Validation (rule)
-5. Documentation (skill) → Modifications ciblées (rule)
+
+### Vérifier les Rules Markdown
+
+```bash
+# Vérifier que le fichier existe et est lisible
+cat .bob/rules.md | head -10
 ```
+
+### Tester avec Bob
+
+Une fois vos skills et rules créés, testez-les :
+
+1. **Ouvrez votre projet dans VS Code avec Bob**
+2. **Demandez à Bob** : "Crée une fonction calculate_average() en respectant nos standards Python"
+3. **Observez** : Bob devrait respecter vos conventions (type hints, docstrings, formatage)
+4. **Itérez** : Ajustez vos skills/rules selon les résultats
+
+**Exemple de test** :
+```
+Prompt : "Crée une fonction calculate_average() en respectant nos standards"
+
+Bob devrait générer du code avec :
+- Type hints (List[float] -> float)
+- Docstring Google style
+- Formatage Black
+- Noms descriptifs
+- Gestion d'erreurs si spécifié dans vos rules
+```
+
 
 ---
 
 ## 🚀 Prochaines Étapes
 
-Vous maîtrisez maintenant les skills et rules de Bob !
+Vous maîtrisez maintenant Skills et Rules !
 
-### Continuez à Pratiquer
+### Appliquez dans Vos Projets
 
-- Appliquez ces concepts dans vos projets réels
-- Expérimentez avec différents workflows
-- Partagez vos découvertes avec l'équipe
+1. **Créez vos skills** : Commencez par votre langage principal
+2. **Définissez vos rules** : Documentez vos conventions
+3. **Partagez avec l'équipe** : Créez une configuration commune
+4. **Itérez** : Améliorez continuellement
 
 ### Explorez Plus Loin
 
-- **Lab 6** : Custom MCP Modes (modes personnalisés)
-- **Lab 7** : DevOps Automation (automatisation)
-- **Projets réels** : Appliquez Bob à votre travail quotidien
+- **Lab 6** : Custom MCP Modes (modes personnalisés avancés)
+- **Lab 7** : DevOps Automation (automatisation CI/CD)
+- **Documentation Bob** : https://internal.bob.ibm.com/docs
 
 ---
 
-## 📚 Récapitulatif des Commandes Utiles
+## 📚 Ressources
 
-### Exploiter les Skills
+### Documentation Officielle
 
-```
-# Analyse approfondie
-"Analyse @fichier.py en détail et identifie tous les problèmes"
+- **Skills** : https://internal.bob.ibm.com/docs/ide/features/skills
+- **Rules** : https://internal.bob.ibm.com/docs/ide/configuration/rules
+- **Configuration** : https://internal.bob.ibm.com/docs/ide/configuration
 
-# Génération de qualité
-"Crée une classe User avec validation, type hints et tests"
+### Exemples
 
-# Refactoring intelligent
-"Refactorise @code.py en appliquant le Strategy Pattern"
+Consultez les fichiers dans `exemples/` :
+- `skills/` : Exemples de skills pour différents langages
+- `rules/` : Exemples de rules pour différents types de projets
 
-# Tests complets
-"Crée des tests unitaires avec au moins 90% de couverture"
+### Vidéos
 
-# Documentation claire
-"Documente cette API avec des exemples d'utilisation"
-```
-
-### Respecter les Rules
-
-```
-# Lecture groupée
-"Lis @app.py, @models.py et @config.py ensemble"
-
-# Modifications ciblées
-"Ajoute une méthode validate() à la classe User dans @models.py"
-
-# Validation explicite
-Toujours confirmer après chaque action de Bob
-
-# Contexte complet
-"Avant de modifier, lis tous les fichiers du module auth/"
-```
+- [Compétences vs modes vs règles – Laissez IBM Bob parler comme un pirate](https://www.youtube.com/watch?v=example)
 
 ---
 
 ## 🎯 Challenge Final
 
-Créez un projet complet qui démontre votre maîtrise :
+Créez une configuration complète pour votre projet actuel :
 
-1. **Utilisez tous les skills** de Bob
-2. **Respectez toutes les rules**
-3. **Documentez votre workflow**
-4. **Partagez vos résultats**
+1. **Identifiez vos besoins** : Quels standards ? Quelles conventions ?
+2. **Créez vos skills** : Au moins 2-3 skills pertinents
+3. **Écrivez vos rules** : Architecture, conventions, bonnes pratiques
+4. **Testez** : Demandez à Bob de générer du code
+5. **Partagez** : Documentez pour votre équipe
 
-**Bravo ! Vous êtes maintenant un expert Bob !** 🎉
+**Bravo ! Vous êtes maintenant un expert de la configuration Bob !** 🎉
 
 ---
 

@@ -1,0 +1,149 @@
+# Skill : FastAPI Development
+# Ce skill définit les standards pour le développement d'API avec FastAPI
+
+name: "FastAPI Development"
+description: "Standards et patterns pour les API REST avec FastAPI"
+version: "1.0.0"
+
+# Framework cible
+framework: fastapi
+language: python
+
+# Architecture recommandée
+architecture:
+  pattern: "Layered Architecture"
+  layers:
+    - name: "Routes"
+      description: "Endpoints API (routes/)"
+      responsibility: "Définir les endpoints et valider les requêtes"
+    - name: "Services"
+      description: "Logique métier (services/)"
+      responsibility: "Implémenter la logique métier"
+    - name: "Repositories"
+      description: "Accès aux données (repositories/)"
+      responsibility: "Interagir avec la base de données"
+    - name: "Models"
+      description: "Modèles de données (models/)"
+      responsibility: "Définir les schémas de données"
+
+# Validation des données
+validation:
+  library: pydantic
+  conventions:
+    - "Utiliser des modèles Pydantic pour toutes les requêtes/réponses"
+    - "Valider les données à l'entrée de l'API"
+    - "Définir des contraintes explicites (min, max, regex)"
+    - "Utiliser Field() pour la documentation des champs"
+
+# Gestion des erreurs
+error_handling:
+  use_http_exceptions: true
+  custom_exception_handlers: true
+  conventions:
+    - "Lever HTTPException avec des status codes appropriés"
+    - "Inclure des messages d'erreur clairs et utiles"
+    - "Logger les erreurs avec le contexte"
+    - "Ne jamais exposer les détails internes en production"
+
+# Authentification et Autorisation
+security:
+  authentication: "JWT"
+  authorization: "Role-based"
+  conventions:
+    - "Utiliser OAuth2PasswordBearer pour JWT"
+    - "Hasher les mots de passe avec bcrypt"
+    - "Implémenter le refresh token"
+    - "Valider les tokens à chaque requête protégée"
+    - "Utiliser des dépendances pour l'authentification"
+
+# Dependency Injection
+dependency_injection:
+  enabled: true
+  conventions:
+    - "Utiliser Depends() pour injecter les dépendances"
+    - "Créer des dépendances réutilisables"
+    - "Injecter les services, repositories et configurations"
+    - "Utiliser des générateurs pour les ressources (DB sessions)"
+
+# Documentation
+documentation:
+  auto_generate: true
+  format: "OpenAPI 3.0"
+  conventions:
+    - "Documenter tous les endpoints avec docstrings"
+    - "Utiliser response_model pour typer les réponses"
+    - "Définir les status_code explicitement"
+    - "Ajouter des exemples avec example= dans les modèles"
+    - "Grouper les endpoints avec tags"
+
+# Performance
+performance:
+  async_by_default: true
+  conventions:
+    - "Utiliser async/await pour les opérations I/O"
+    - "Implémenter le caching pour les données fréquentes"
+    - "Utiliser la pagination pour les listes"
+    - "Optimiser les requêtes N+1"
+    - "Implémenter le rate limiting"
+
+# Tests
+testing:
+  framework: pytest
+  client: "TestClient from fastapi.testclient"
+  conventions:
+    - "Tester tous les endpoints (happy path + edge cases)"
+    - "Utiliser des fixtures pour les données de test"
+    - "Mocker les dépendances externes"
+    - "Tester l'authentification et l'autorisation"
+    - "Vérifier les status codes et les réponses"
+
+# Structure de projet recommandée
+project_structure: |
+  app/
+  ├── main.py              # Point d'entrée de l'application
+  ├── config.py            # Configuration
+  ├── dependencies.py      # Dépendances communes
+  ├── models/              # Modèles Pydantic
+  │   ├── __init__.py
+  │   ├── user.py
+  │   └── ...
+  ├── routes/              # Endpoints API
+  │   ├── __init__.py
+  │   ├── users.py
+  │   └── ...
+  ├── services/            # Logique métier
+  │   ├── __init__.py
+  │   ├── user_service.py
+  │   └── ...
+  ├── repositories/        # Accès aux données
+  │   ├── __init__.py
+  │   ├── user_repository.py
+  │   └── ...
+  ├── database/            # Configuration DB
+  │   ├── __init__.py
+  │   └── session.py
+  └── utils/               # Utilitaires
+      ├── __init__.py
+      └── security.py
+
+# Bonnes pratiques
+best_practices:
+  - "Séparer la logique métier des routes"
+  - "Utiliser des modèles Pydantic distincts pour request/response"
+  - "Implémenter la gestion des erreurs globale"
+  - "Utiliser des variables d'environnement pour la configuration"
+  - "Implémenter le logging structuré"
+  - "Ajouter des health checks"
+  - "Utiliser CORS correctement"
+  - "Implémenter le versioning de l'API"
+
+# Ce qu'il faut éviter
+avoid:
+  - "Mettre la logique métier dans les routes"
+  - "Utiliser des requêtes SQL directes dans les routes"
+  - "Exposer les modèles de base de données directement"
+  - "Ignorer la validation des données"
+  - "Utiliser des secrets en dur dans le code"
+  - "Bloquer l'event loop avec des opérations synchrones"
+
+# Made with Bob

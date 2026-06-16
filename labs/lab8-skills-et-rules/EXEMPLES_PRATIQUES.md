@@ -1,609 +1,797 @@
 # 🎯 Exemples Pratiques : Skills et Rules en Action
 
-Ce document présente des exemples concrets d'utilisation des skills et rules de Bob dans des situations réelles.
+Ce document présente des exemples concrets d'utilisation des Skills et Rules de Bob dans des situations réelles.
 
 ---
 
 ## 📚 Table des Matières
 
-1. [Skill : Analyse](#skill--analyse)
-2. [Skill : Génération](#skill--génération)
-3. [Skill : Refactoring](#skill--refactoring)
-4. [Skill : Tests](#skill--tests)
-5. [Rule : Lecture Groupée](#rule--lecture-groupée)
-6. [Rule : Modifications Ciblées](#rule--modifications-ciblées)
-7. [Workflows Complets](#workflows-complets)
+1. [Exemple 1 : Skill Python pour un Projet Data Science](#exemple-1--skill-python-pour-un-projet-data-science)
+2. [Exemple 2 : Rules pour une API E-commerce](#exemple-2--rules-pour-une-api-e-commerce)
+3. [Exemple 3 : Skill + Rules pour un Projet React](#exemple-3--skill--rules-pour-un-projet-react)
+4. [Exemple 4 : Workflow TDD avec Skills](#exemple-4--workflow-tdd-avec-skills)
+5. [Exemple 5 : Configuration Multi-Projets](#exemple-5--configuration-multi-projets)
 
 ---
 
-## Skill : Analyse
+## Exemple 1 : Skill Python pour un Projet Data Science
 
-### Exemple 1 : Analyse de Code Legacy
+### Contexte
 
-**Situation** : Vous héritez d'un code mal écrit
+Vous travaillez sur un projet de machine learning et voulez standardiser le code Python de l'équipe.
 
-**Commande** :
-```
-Analyse @messy_code.py et identifie tous les problèmes :
-- Nommage
-- Style (PEP 8)
-- Lisibilité
-- Performance
-- Bonnes pratiques
-- Documentation manquante
-```
+### Skill : `.bob/skills/data-science-python.yaml`
 
-**Résultat attendu de Bob** :
-```
-J'ai identifié 12 problèmes dans ce code :
+```yaml
+name: "Data Science Python Standards"
+description: "Standards pour les projets de data science en Python"
+version: "1.0.0"
+author: "Data Science Team"
+tags: ["python", "data-science", "ml"]
 
-1. NOMMAGE
-   - Ligne 1 : Fonction 'calc' → nom trop vague, devrait être 'calculate_average'
-   - Ligne 3-5 : Variables 'x', 'y', 'z' → noms non descriptifs
-   - Ligne 14 : Attributs 'n', 'e', 'a' → noms cryptiques
+# Configuration Python
+language: python
+python_version: "3.11+"
 
-2. STYLE (PEP 8)
-   - Ligne 1 : Manque d'espaces autour des paramètres
-   - Ligne 3-5 : Manque d'espaces autour des opérateurs
-   - Ligne 8 : Manque de ligne vide avant la définition de fonction
+# Outils
+tools:
+  formatter: black
+  linter: ruff
+  type_checker: mypy
+  notebook_formatter: nbqa
+  test_framework: pytest
 
-3. LISIBILITÉ
-   - Ligne 1-6 : Pas de docstring
-   - Ligne 3-5 : Calculs intermédiaires non expliqués
-   - Ligne 10 : Boucle avec range(len()) au lieu d'itération directe
+# Style
+style:
+  max_line_length: 100
+  docstring_style: "NumPy"
+  
+# Bibliothèques recommandées
+libraries:
+  data_manipulation:
+    - pandas
+    - numpy
+    - polars
+  visualization:
+    - matplotlib
+    - seaborn
+    - plotly
+  ml:
+    - scikit-learn
+    - xgboost
+    - lightgbm
+  deep_learning:
+    - pytorch
+    - tensorflow
 
-4. PERFORMANCE
-   - Ligne 10 : range(len(data)) inefficace, utiliser enumerate()
-   - Ligne 11-12 : Append dans une boucle, utiliser list comprehension
+# Conventions spécifiques
+conventions:
+  - "Utiliser pandas pour la manipulation de données"
+  - "Préférer numpy pour les calculs numériques"
+  - "Documenter les fonctions avec le style NumPy"
+  - "Utiliser type hints même pour les notebooks"
+  - "Versionner les datasets avec DVC"
+  - "Tracker les expériences avec MLflow"
 
-5. BONNES PRATIQUES
-   - Ligne 1 : Pas de type hints
-   - Ligne 6 : Division par 2 pourrait causer une erreur si résultat attendu est int
-   - Ligne 14 : Classe sans validation des données
+# Structure de projet
+project_structure: |
+  project/
+  ├── data/
+  │   ├── raw/           # Données brutes
+  │   ├── processed/     # Données traitées
+  │   └── external/      # Données externes
+  ├── notebooks/         # Jupyter notebooks
+  ├── src/
+  │   ├── data/         # Scripts de traitement
+  │   ├── features/     # Feature engineering
+  │   ├── models/       # Modèles ML
+  │   └── visualization/ # Visualisations
+  ├── tests/            # Tests
+  └── models/           # Modèles entraînés
 
-6. DOCUMENTATION
-   - Aucune docstring dans tout le fichier
-   - Pas de commentaires pour expliquer la logique
-```
+# Bonnes pratiques ML
+ml_best_practices:
+  - "Séparer train/validation/test dès le début"
+  - "Fixer les random seeds pour la reproductibilité"
+  - "Valider les données avant l'entraînement"
+  - "Logger les métriques et hyperparamètres"
+  - "Versionner les modèles"
+  - "Documenter les expériences"
 
-### Exemple 2 : Analyse de Performance
-
-**Commande** :
-```
-Analyse les performances de @data_processor.py et identifie les goulots d'étranglement
-```
-
-**Résultat attendu** :
-```
-Analyse de performance :
-
-GOULOTS IDENTIFIÉS :
-
-1. Fonction calculate_stats() (lignes 45-63)
-   - Complexité : O(n) × 3 = O(3n)
-   - Problème : 3 boucles séparées sur les mêmes données
-   - Impact : Performance × 3 plus lente que nécessaire
-   - Solution : Une seule boucle pour calculer tout
-
-2. Fonction process_data() (lignes 3-21)
-   - Problème : Concaténation de strings dans une boucle (XML/CSV)
-   - Impact : O(n²) en mémoire
-   - Solution : Utiliser une liste et join()
-
-3. Validation (lignes 23-43)
-   - Problème : Pas de cache pour les validations répétées
-   - Solution : Ajouter un décorateur @lru_cache
-
-RECOMMANDATIONS :
-- Réduire calculate_stats de O(3n) à O(n)
-- Utiliser join() au lieu de concaténation
-- Ajouter du caching pour les validations
-```
-
----
-
-## Skill : Génération
-
-### Exemple 1 : Génération d'une Classe Complète
-
-**Commande** :
-```
-Crée une classe Product dans exercices/ex2-skills-generation/models.py avec :
-- Attributs : id (UUID), name (str), price (Decimal), stock (int), category (str)
-- Validation : price > 0, stock >= 0, name non vide
-- Type hints partout
-- Docstrings Google style
-- Méthode __repr__ pour le debug
-- Méthode to_dict() pour la sérialisation
-- Utilise dataclass si approprié
+# Ce qu'il faut éviter
+avoid:
+  - "Modifier les données raw directement"
+  - "Entraîner sans validation set"
+  - "Oublier de fixer les random seeds"
+  - "Ne pas versionner les datasets"
+  - "Hardcoder les chemins de fichiers"
 ```
 
-**Code généré par Bob** :
+### Utilisation
+
 ```python
-from dataclasses import dataclass, field
-from decimal import Decimal
-from uuid import UUID, uuid4
-from typing import Dict, Any
+# Demande à Bob
+"Crée un script de preprocessing pour des données CSV en respectant 
+nos standards data science"
 
-@dataclass
-class Product:
-    """Représente un produit dans le système.
+# Bob génère automatiquement :
+# - Code formaté avec Black
+# - Type hints
+# - Docstrings NumPy style
+# - Gestion des chemins avec pathlib
+# - Logging approprié
+# - Tests unitaires
+```
+
+### Résultat Généré par Bob
+
+```python
+"""Module de preprocessing des données.
+
+Ce module contient les fonctions pour nettoyer et transformer
+les données brutes en données prêtes pour le ML.
+"""
+
+import logging
+from pathlib import Path
+from typing import Optional
+
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import StandardScaler
+
+logger = logging.getLogger(__name__)
+
+
+def load_raw_data(filepath: Path) -> pd.DataFrame:
+    """Charge les données brutes depuis un fichier CSV.
     
-    Attributes:
-        id: Identifiant unique du produit (UUID)
-        name: Nom du produit (non vide)
-        price: Prix du produit (doit être positif)
-        stock: Quantité en stock (doit être >= 0)
-        category: Catégorie du produit
+    Parameters
+    ----------
+    filepath : Path
+        Chemin vers le fichier CSV
         
-    Raises:
-        ValueError: Si les validations échouent
+    Returns
+    -------
+    pd.DataFrame
+        DataFrame contenant les données brutes
         
-    Example:
-        >>> product = Product(
-        ...     name="Laptop",
-        ...     price=Decimal("999.99"),
-        ...     stock=10,
-        ...     category="Electronics"
-        ... )
+    Raises
+    ------
+    FileNotFoundError
+        Si le fichier n'existe pas
+    ValueError
+        Si le fichier est vide ou mal formaté
+        
+    Examples
+    --------
+    >>> data = load_raw_data(Path("data/raw/dataset.csv"))
+    >>> print(data.shape)
+    (1000, 10)
     """
+    if not filepath.exists():
+        raise FileNotFoundError(f"File not found: {filepath}")
     
-    name: str
-    price: Decimal
-    stock: int
-    category: str
-    id: UUID = field(default_factory=uuid4)
+    logger.info(f"Loading data from {filepath}")
+    df = pd.read_csv(filepath)
     
-    def __post_init__(self) -> None:
-        """Valide les données après initialisation."""
-        if not self.name or not self.name.strip():
-            raise ValueError("Le nom du produit ne peut pas être vide")
-        
-        if self.price <= 0:
-            raise ValueError(f"Le prix doit être positif, reçu: {self.price}")
-        
-        if self.stock < 0:
-            raise ValueError(f"Le stock ne peut pas être négatif, reçu: {self.stock}")
+    if df.empty:
+        raise ValueError("Loaded DataFrame is empty")
     
-    def to_dict(self) -> Dict[str, Any]:
-        """Convertit le produit en dictionnaire.
-        
-        Returns:
-            Dictionnaire contenant toutes les données du produit
-        """
-        return {
-            'id': str(self.id),
-            'name': self.name,
-            'price': str(self.price),
-            'stock': self.stock,
-            'category': self.category
-        }
-    
-    def __repr__(self) -> str:
-        """Représentation pour le debug."""
-        return (
-            f"Product(id={self.id}, name='{self.name}', "
-            f"price={self.price}, stock={self.stock}, category='{self.category}')"
-        )
-```
+    logger.info(f"Loaded {len(df)} rows and {len(df.columns)} columns")
+    return df
 
-### Exemple 2 : Génération de Tests
 
-**Commande** :
-```
-Crée des tests unitaires complets pour @models.py dans test_models.py
-```
+def clean_data(
+    df: pd.DataFrame,
+    drop_duplicates: bool = True,
+    handle_missing: str = "drop"
+) -> pd.DataFrame:
+    """Nettoie les données en gérant les duplicatas et valeurs manquantes.
+    
+    Parameters
+    ----------
+    df : pd.DataFrame
+        DataFrame à nettoyer
+    drop_duplicates : bool, default=True
+        Si True, supprime les lignes dupliquées
+    handle_missing : str, default="drop"
+        Stratégie pour les valeurs manquantes: "drop", "mean", "median"
+        
+    Returns
+    -------
+    pd.DataFrame
+        DataFrame nettoyé
+        
+    Examples
+    --------
+    >>> df_clean = clean_data(df, handle_missing="mean")
+    """
+    df_clean = df.copy()
+    
+    # Supprimer les duplicatas
+    if drop_duplicates:
+        initial_rows = len(df_clean)
+        df_clean = df_clean.drop_duplicates()
+        removed = initial_rows - len(df_clean)
+        if removed > 0:
+            logger.info(f"Removed {removed} duplicate rows")
+    
+    # Gérer les valeurs manquantes
+    if handle_missing == "drop":
+        df_clean = df_clean.dropna()
+    elif handle_missing == "mean":
+        df_clean = df_clean.fillna(df_clean.mean())
+    elif handle_missing == "median":
+        df_clean = df_clean.fillna(df_clean.median())
+    
+    logger.info(f"Cleaned data shape: {df_clean.shape}")
+    return df_clean
 
-**Tests générés** :
-```python
-import pytest
-from decimal import Decimal
-from uuid import UUID
-from models import Product
 
-class TestProduct:
-    """Tests pour la classe Product."""
+def scale_features(
+    df: pd.DataFrame,
+    columns: Optional[list[str]] = None
+) -> tuple[pd.DataFrame, StandardScaler]:
+    """Normalise les features numériques.
     
-    def test_product_creation_valid(self):
-        """Test création d'un produit valide."""
-        product = Product(
-            name="Laptop",
-            price=Decimal("999.99"),
-            stock=10,
-            category="Electronics"
-        )
+    Parameters
+    ----------
+    df : pd.DataFrame
+        DataFrame contenant les features
+    columns : list[str], optional
+        Colonnes à normaliser. Si None, normalise toutes les colonnes numériques
         
-        assert product.name == "Laptop"
-        assert product.price == Decimal("999.99")
-        assert product.stock == 10
-        assert product.category == "Electronics"
-        assert isinstance(product.id, UUID)
-    
-    def test_product_validation_empty_name(self):
-        """Test validation : nom vide."""
-        with pytest.raises(ValueError, match="ne peut pas être vide"):
-            Product(
-                name="",
-                price=Decimal("10.00"),
-                stock=5,
-                category="Test"
-            )
-    
-    def test_product_validation_negative_price(self):
-        """Test validation : prix négatif."""
-        with pytest.raises(ValueError, match="doit être positif"):
-            Product(
-                name="Test",
-                price=Decimal("-10.00"),
-                stock=5,
-                category="Test"
-            )
-    
-    def test_product_validation_negative_stock(self):
-        """Test validation : stock négatif."""
-        with pytest.raises(ValueError, match="ne peut pas être négatif"):
-            Product(
-                name="Test",
-                price=Decimal("10.00"),
-                stock=-5,
-                category="Test"
-            )
-    
-    def test_product_to_dict(self):
-        """Test conversion en dictionnaire."""
-        product = Product(
-            name="Mouse",
-            price=Decimal("29.99"),
-            stock=50,
-            category="Accessories"
-        )
+    Returns
+    -------
+    tuple[pd.DataFrame, StandardScaler]
+        DataFrame avec features normalisées et le scaler utilisé
         
-        result = product.to_dict()
-        
-        assert result['name'] == "Mouse"
-        assert result['price'] == "29.99"
-        assert result['stock'] == 50
-        assert result['category'] == "Accessories"
-        assert 'id' in result
+    Examples
+    --------
+    >>> df_scaled, scaler = scale_features(df, columns=["age", "income"])
+    """
+    df_scaled = df.copy()
     
-    def test_product_repr(self):
-        """Test représentation string."""
-        product = Product(
-            name="Keyboard",
-            price=Decimal("79.99"),
-            stock=25,
-            category="Accessories"
-        )
-        
-        repr_str = repr(product)
-        
-        assert "Product(" in repr_str
-        assert "name='Keyboard'" in repr_str
-        assert "price=79.99" in repr_str
+    if columns is None:
+        columns = df.select_dtypes(include=[np.number]).columns.tolist()
+    
+    scaler = StandardScaler()
+    df_scaled[columns] = scaler.fit_transform(df[columns])
+    
+    logger.info(f"Scaled {len(columns)} features")
+    return df_scaled, scaler
 ```
 
 ---
 
-## Skill : Refactoring
+## Exemple 2 : Rules pour une API E-commerce
 
-### Exemple 1 : Appliquer le Strategy Pattern
+### Contexte
 
-**Avant** :
+Vous développez une API e-commerce avec FastAPI et voulez documenter les règles du projet.
+
+### Rules : `.bob/rules.md`
+
+```markdown
+# Règles du Projet - API E-commerce
+
+## 📋 Contexte
+
+API REST pour une plateforme e-commerce B2C avec :
+- Gestion des produits et catégories
+- Panier et commandes
+- Paiements (Stripe)
+- Authentification utilisateurs
+- Système de reviews
+
+## 🏗️ Architecture
+
+### Stack Technique
+- **Backend** : FastAPI + Python 3.11
+- **Database** : PostgreSQL 15
+- **Cache** : Redis
+- **Queue** : Celery + RabbitMQ
+- **Storage** : AWS S3 (images produits)
+- **Payment** : Stripe API
+
+### Architecture en Couches
+
+```
+Routes (API) → Services (Business Logic) → Repositories (Data Access) → Database
+                    ↓
+                 Celery Tasks (Async)
+```
+
+**Règles strictes** :
+1. Les routes ne font QUE valider et appeler les services
+2. Les services contiennent TOUTE la logique métier
+3. Les repositories sont les SEULS à accéder à la DB
+4. Les tâches Celery sont appelées depuis les services
+
+## 💰 Gestion des Paiements
+
+### Règles Critiques
+
+- **JAMAIS** stocker les numéros de carte
+- Utiliser Stripe Payment Intents
+- Implémenter l'idempotence (idempotency keys)
+- Logger TOUS les événements de paiement
+- Gérer les webhooks Stripe de façon asynchrone
+- Timeout de 30 secondes max pour les appels Stripe
+
+### Workflow de Paiement
+
+1. Client crée une commande → Status: PENDING
+2. Service crée un Payment Intent Stripe
+3. Client confirme le paiement côté frontend
+4. Webhook Stripe notifie le succès/échec
+5. Service met à jour la commande → Status: PAID ou FAILED
+6. Si PAID, déclencher la préparation (Celery task)
+
+## 🛒 Gestion du Panier
+
+### Règles
+
+- Un panier par utilisateur (session pour les anonymes)
+- TTL de 7 jours pour les paniers inactifs
+- Vérifier la disponibilité des produits avant checkout
+- Recalculer les prix au moment du checkout (pas de confiance client)
+- Gérer les codes promo avec validation stricte
+
+### Calcul des Prix
+
 ```python
-def process_data(data, format):
-    if format == 'json':
-        return json.dumps(data)
-    elif format == 'xml':
-        # ... code XML
-    elif format == 'csv':
-        # ... code CSV
+# TOUJOURS recalculer côté serveur
+total = sum(item.product.price * item.quantity for item in cart.items)
+if cart.promo_code:
+    discount = calculate_discount(cart.promo_code, total)
+    total -= discount
+shipping = calculate_shipping(cart.items, user.address)
+total += shipping
 ```
 
-**Commande** :
-```
-Refactorise @data_processor.py en appliquant le Strategy Pattern pour les formatters
-```
+## 📦 Gestion des Stocks
 
-**Après (généré par Bob)** :
+### Règles Critiques
+
+- Utiliser des transactions DB pour les modifications de stock
+- Implémenter le pessimistic locking pour éviter les oversells
+- Vérifier le stock AVANT de créer la commande
+- Réserver le stock pendant 15 minutes après création commande
+- Libérer le stock si paiement échoue ou timeout
+
+### Code Pattern
+
 ```python
-from abc import ABC, abstractmethod
-from typing import Dict, Any
-import json
+# TOUJOURS utiliser ce pattern
+async with db.begin():  # Transaction
+    product = await repo.get_with_lock(product_id)  # Lock
+    if product.stock < quantity:
+        raise InsufficientStockError()
+    product.stock -= quantity
+    await repo.save(product)
+```
 
-class DataFormatter(ABC):
-    """Interface pour les formatters de données."""
-    
-    @abstractmethod
-    def format(self, data: Dict[str, Any]) -> str:
-        """Formate les données."""
-        pass
+## 🔒 Sécurité
 
-class JsonFormatter(DataFormatter):
-    """Formatter JSON."""
-    
-    def format(self, data: Dict[str, Any]) -> str:
-        """Formate en JSON."""
-        return json.dumps(data, indent=2)
+### Authentification
 
-class XmlFormatter(DataFormatter):
-    """Formatter XML."""
-    
-    def format(self, data: Dict[str, Any]) -> str:
-        """Formate en XML."""
-        elements = [f"<{key}>{value}</{key}>" for key, value in data.items()]
-        return f"<data>{''.join(elements)}</data>"
+- JWT avec expiration 1 heure
+- Refresh tokens (7 jours)
+- Rate limiting : 100 req/min par IP
+- 2FA optionnel pour les comptes
 
-class CsvFormatter(DataFormatter):
-    """Formatter CSV."""
-    
-    def format(self, data: Dict[str, Any]) -> str:
-        """Formate en CSV."""
-        headers = ','.join(data.keys())
-        values = ','.join(str(v) for v in data.values())
-        return f"{headers}\n{values}"
+### Autorisation
 
-class DataProcessor:
-    """Processeur de données avec formatters interchangeables."""
-    
-    def __init__(self, formatter: DataFormatter):
-        self.formatter = formatter
-    
-    def process(self, data: Dict[str, Any]) -> str:
-        """Traite les données avec le formatter configuré."""
-        return self.formatter.format(data)
+Rôles :
+- **CUSTOMER** : Acheter, voir ses commandes
+- **SELLER** : Gérer ses produits
+- **ADMIN** : Accès complet
+
+### Validation
+
+- Valider TOUTES les entrées avec Pydantic
+- Sanitizer les descriptions de produits (XSS)
+- Limiter la taille des uploads (5MB max)
+- Vérifier les types MIME des images
+
+## 📊 Performance
+
+### Caching Strategy
+
+- **Products** : Cache 1 heure (invalidation sur update)
+- **Categories** : Cache 24 heures
+- **User Cart** : Cache 5 minutes
+- **Search Results** : Cache 15 minutes
+
+### Optimisations Requises
+
+- Pagination obligatoire (max 50 items)
+- Eager loading pour éviter N+1
+- Index sur : product_id, user_id, order_id, created_at
+- Compression des réponses API (gzip)
+
+## 🧪 Tests
+
+### Couverture Minimale
+
+- **Services** : 90% (logique critique)
+- **Repositories** : 80%
+- **Routes** : 70%
+- **Global** : 80%
+
+### Tests Obligatoires
+
+- Tous les cas de paiement (succès, échec, timeout)
+- Gestion des stocks (race conditions)
+- Validation des données
+- Authentification et autorisation
+- Webhooks Stripe
+
+## 📝 Logging
+
+### Ce qu'il faut logger
+
+- Toutes les transactions financières
+- Modifications de stock
+- Erreurs de paiement
+- Tentatives d'accès non autorisé
+- Performances anormales (> 1s)
+
+### Format
+
+```python
+logger.info(
+    "Order created",
+    extra={
+        "order_id": order.id,
+        "user_id": user.id,
+        "total": order.total,
+        "items_count": len(order.items)
+    }
+)
+```
+
+## ❌ Ce qu'il faut ABSOLUMENT éviter
+
+- ❌ Stocker des données de carte bancaire
+- ❌ Faire confiance aux prix envoyés par le client
+- ❌ Modifier le stock sans transaction
+- ❌ Exposer les erreurs internes au client
+- ❌ Oublier de valider les webhooks Stripe
+- ❌ Utiliser des IDs séquentiels (utiliser UUID)
+- ❌ Logger les données sensibles (tokens, passwords)
+
+## ✅ Checklist Avant Déploiement
+
+- [ ] Tous les tests passent
+- [ ] Couverture >= 80%
+- [ ] Pas de secrets en dur
+- [ ] Rate limiting configuré
+- [ ] Webhooks Stripe testés
+- [ ] Monitoring configuré (Sentry)
+- [ ] Logs structurés
+- [ ] Backup DB configuré
+- [ ] SSL/TLS activé
+- [ ] CORS configuré correctement
+```
+
+### Utilisation
+
+```python
+# Demande à Bob
+"Crée le service OrderService qui gère la création de commandes 
+en respectant nos rules"
+
+# Bob génère automatiquement :
+# - Vérification du stock avec transaction
+# - Recalcul des prix côté serveur
+# - Intégration Stripe Payment Intent
+# - Gestion des erreurs appropriée
+# - Logging des événements
+# - Tests complets
 ```
 
 ---
 
-## Rule : Lecture Groupée
+## Exemple 3 : Skill + Rules pour un Projet React
 
-### Exemple : Comprendre un Module Complet
+### Skill : `.bob/skills/react-typescript.yaml`
 
-**Situation** : Vous voulez comprendre comment fonctionne un module d'authentification
+```yaml
+name: "React TypeScript Standards"
+version: "1.0.0"
+framework: react
+language: typescript
 
-**Commande optimale** :
+# Configuration TypeScript
+typescript:
+  strict: true
+  no_any: true
+  no_implicit_any: true
+
+# Composants
+components:
+  style: "functional"
+  export_style: "named"
+  props_destructuring: true
+
+# State Management
+state_management: zustand
+
+# Styling
+styling:
+  primary: tailwind
+  secondary: css_modules
+
+# Forms
+forms:
+  library: react-hook-form
+  validation: zod
+
+# API
+api:
+  client: axios
+  data_fetching: react-query
+
+# Tests
+testing:
+  unit: vitest
+  component: react-testing-library
+  e2e: playwright
+
+conventions:
+  - "Functional components uniquement"
+  - "Named exports pour les composants"
+  - "Props typées avec TypeScript"
+  - "Custom hooks préfixés avec 'use'"
+  - "Un composant par fichier"
 ```
-Lis ensemble ces fichiers du module auth :
-@auth/models.py
-@auth/services.py
-@auth/routes.py
-@auth/middleware.py
-@auth/utils.py
 
-Puis explique-moi comment l'authentification fonctionne dans ce système.
+### Rules : `.bob/rules.md`
+
+```markdown
+# Règles du Projet - Dashboard Analytics
+
+## Architecture
+
+Application SPA React pour visualiser des données analytics en temps réel.
+
+### Structure
+
+```
+src/
+├── components/
+│   ├── ui/          # Composants réutilisables (Button, Input)
+│   ├── charts/      # Composants de graphiques
+│   └── dashboard/   # Composants métier
+├── hooks/           # Custom hooks
+├── stores/          # Zustand stores
+├── services/        # API services
+└── pages/           # Pages
 ```
 
-**Avantages** :
-- Bob lit les 5 fichiers en une seule fois (Rule 3)
-- Il comprend le contexte complet
-- Il peut expliquer les interactions entre fichiers
-- Plus efficace que lire un par un
+## Conventions Spécifiques
 
-**Résultat de Bob** :
+### Composants de Graphiques
+
+- Utiliser Recharts pour tous les graphiques
+- Wrapper dans des composants réutilisables
+- Gérer le responsive
+- Ajouter des tooltips informatifs
+
+### Performance
+
+- Virtualiser les longues listes (react-window)
+- Lazy load les pages
+- Memoizer les calculs coûteux
+- Debounce les recherches (300ms)
+
+### Temps Réel
+
+- WebSocket pour les updates en temps réel
+- Reconnexion automatique
+- Afficher le statut de connexion
+- Buffer les messages pendant la déconnexion
 ```
-Après lecture des 5 fichiers, voici comment fonctionne l'authentification :
 
-ARCHITECTURE :
-1. models.py : Définit User et Token
-2. services.py : Logique métier (login, register, verify)
-3. routes.py : Endpoints API
-4. middleware.py : Vérification des tokens
-5. utils.py : Fonctions helper (hash, JWT)
+### Utilisation Combinée
 
-FLUX D'AUTHENTIFICATION :
-1. User POST /login → routes.py
-2. routes.py appelle services.authenticate()
-3. services.py vérifie avec models.User
-4. services.py génère un JWT avec utils.create_token()
-5. Token retourné au client
-6. Requêtes suivantes → middleware.py vérifie le token
-7. middleware.py utilise utils.verify_token()
+```typescript
+// Demande à Bob
+"Crée un composant RevenueChart qui affiche les revenus en temps réel
+en respectant nos skills et rules"
 
-POINTS CLÉS :
-- JWT avec expiration de 24h
-- Passwords hashés avec bcrypt
-- Refresh tokens supportés
-- Rate limiting sur /login
+// Bob génère :
+// - Composant fonctionnel TypeScript
+// - Props typées
+// - Utilisation de Recharts
+// - WebSocket pour le temps réel
+// - Responsive design avec Tailwind
+// - Tests avec Vitest
 ```
 
 ---
 
-## Rule : Modifications Ciblées
+## Exemple 4 : Workflow TDD avec Skills
 
-### Exemple : Ajouter une Fonctionnalité
+### Skill : `.bob/skills/tdd-workflow.yaml`
 
-**Situation** : Ajouter une méthode à une classe existante
+```yaml
+name: "TDD Workflow"
+description: "Test-Driven Development workflow"
+version: "1.0.0"
 
-**❌ Mauvaise approche** :
-```
-Réécris @models.py en ajoutant une méthode update()
-```
-→ Risque : Bob réécrit tout le fichier, peut introduire des erreurs
+workflow:
+  methodology: "Red-Green-Refactor"
+  
+  steps:
+    - name: "Red"
+      description: "Écrire un test qui échoue"
+      action: "create_failing_test"
+      
+    - name: "Green"
+      description: "Écrire le code minimal pour passer le test"
+      action: "implement_minimal_code"
+      
+    - name: "Refactor"
+      description: "Améliorer le code sans casser les tests"
+      action: "refactor_code"
+      
+    - name: "Repeat"
+      description: "Répéter pour la prochaine fonctionnalité"
+      action: "next_feature"
 
-**✅ Bonne approche** :
-```
-Ajoute une méthode update() à la classe User dans @models.py
-en utilisant apply_diff
+test_framework: pytest
+coverage_minimum: 90
+
+test_conventions:
+  - "Un test par comportement"
+  - "Noms descriptifs : test_should_X_when_Y"
+  - "Arrange-Act-Assert pattern"
+  - "Utiliser des fixtures pour le setup"
+  - "Mocker les dépendances externes"
+
+refactoring_rules:
+  - "Ne jamais refactorer sans tests verts"
+  - "Faire des petits refactorings incrémentaux"
+  - "Relancer les tests après chaque refactoring"
+  - "Commiter après chaque cycle Red-Green-Refactor"
 ```
 
-**Résultat de Bob** :
-```
-Je vais ajouter la méthode update() à la classe User.
-```
+### Utilisation
 
 ```python
-<<<<<<< SEARCH
-    def to_dict(self) -> Dict[str, Any]:
-        """Convertit l'utilisateur en dictionnaire."""
-        return {
-            'id': str(self.id),
-            'name': self.name,
-            'email': self.email
-        }
-=======
-    def to_dict(self) -> Dict[str, Any]:
-        """Convertit l'utilisateur en dictionnaire."""
-        return {
-            'id': str(self.id),
-            'name': self.name,
-            'email': self.email
-        }
+# Demande à Bob
+"Implémente une fonction calculate_discount() en suivant le workflow TDD"
+
+# Bob suit automatiquement le cycle :
+
+# 1. RED - Crée le test qui échoue
+def test_should_apply_10_percent_discount_when_amount_over_100():
+    result = calculate_discount(amount=150, customer_type="regular")
+    assert result == 135.0  # 150 - 15
+
+# 2. GREEN - Implémente le minimum
+def calculate_discount(amount: float, customer_type: str) -> float:
+    if amount > 100:
+        return amount * 0.9
+    return amount
+
+# 3. REFACTOR - Améliore le code
+def calculate_discount(amount: float, customer_type: str) -> float:
+    """Calcule le montant après réduction.
     
-    def update(self, **kwargs) -> None:
-        """Met à jour les attributs de l'utilisateur.
+    Args:
+        amount: Montant initial
+        customer_type: Type de client
         
-        Args:
-            **kwargs: Attributs à mettre à jour
-            
-        Raises:
-            ValueError: Si un attribut est invalide
-        """
-        for key, value in kwargs.items():
-            if not hasattr(self, key):
-                raise ValueError(f"Attribut invalide : {key}")
-            setattr(self, key, value)
+    Returns:
+        Montant après réduction
+    """
+    DISCOUNT_RATES = {
+        "regular": 0.10,
+        "premium": 0.20,
+        "vip": 0.30
+    }
+    
+    if amount <= 100:
+        return amount
         
-        # Revalider après mise à jour
-        self.__post_init__()
->>>>>>> REPLACE
-```
+    discount_rate = DISCOUNT_RATES.get(customer_type, 0)
+    return amount * (1 - discount_rate)
 
-**Avantages** :
-- Modification précise et ciblée
-- Vous voyez exactement ce qui change
-- Moins de risques d'erreurs
-- Facile à valider
+# 4. REPEAT - Ajoute le test suivant
+def test_should_apply_20_percent_discount_when_premium_customer():
+    result = calculate_discount(amount=150, customer_type="premium")
+    assert result == 120.0
+```
 
 ---
 
-## Workflows Complets
+## Exemple 5 : Configuration Multi-Projets
 
-### Workflow 1 : Créer une API REST Complète
+### Contexte
 
-```
-Étape 1 : Génération
-"Crée une API REST Flask pour gérer des livres dans exercices/api-books/"
+Vous gérez plusieurs projets avec des standards communs mais des spécificités.
 
-Étape 2 : Validation
-[Vous validez la structure créée]
-
-Étape 3 : Lecture groupée
-"Lis @app.py, @models.py et @routes.py ensemble"
-
-Étape 4 : Analyse
-"Analyse cette API et suggère des améliorations"
-
-Étape 5 : Amélioration ciblée
-"Ajoute la validation des données avec marshmallow dans @routes.py"
-
-Étape 6 : Tests
-"Crée des tests d'API complets dans test_api.py"
-
-Étape 7 : Documentation
-"Crée un README.md avec des exemples d'utilisation de l'API"
-```
-
-### Workflow 2 : Refactoring d'un Projet Legacy
+### Structure
 
 ```
-Étape 1 : Lecture complète
-"Lis tous les fichiers Python dans legacy/ (jusqu'à 5 fichiers)"
-
-Étape 2 : Analyse approfondie
-"Analyse ce code et identifie tous les problèmes par ordre de priorité"
-
-Étape 3 : Plan de refactoring
-"Propose un plan de refactoring détaillé avec les étapes à suivre"
-
-Étape 4 : Refactoring progressif
-"Commence par le problème prioritaire : refactorise @data_processor.py"
-
-Étape 5 : Tests de non-régression
-"Crée des tests pour vérifier que le comportement n'a pas changé"
-
-Étape 6 : Validation
-[Vous exécutez les tests et validez]
-
-Étape 7 : Itération
-"Continue avec le problème suivant : @api.py"
-
-Étape 8 : Documentation
-"Crée un REFACTORING.md qui documente tous les changements"
+team-skills/  (repo Git partagé)
+├── skills/
+│   ├── common/
+│   │   ├── python-base.yaml
+│   │   ├── typescript-base.yaml
+│   │   └── git-workflow.yaml
+│   ├── backend/
+│   │   ├── fastapi.yaml
+│   │   └── django.yaml
+│   └── frontend/
+│       ├── react.yaml
+│       └── vue.yaml
+└── templates/
+    ├── rules-api.md
+    └── rules-frontend.md
 ```
 
-### Workflow 3 : Optimisation de Performance
+### Projet 1 : API Backend
 
+```bash
+# .bob/skills/ (symlinks vers team-skills)
+ln -s ../../team-skills/skills/common/python-base.yaml
+ln -s ../../team-skills/skills/backend/fastapi.yaml
+
+# .bob/rules.md (spécifique au projet)
+# Règles du Projet API Users
+[Hérite des skills communs + spécificités du projet]
 ```
-Étape 1 : Profilage
-"Analyse les performances de @slow_module.py"
 
-Étape 2 : Identification
-"Identifie les 3 fonctions les plus lentes"
+### Projet 2 : Frontend Dashboard
 
-Étape 3 : Optimisation ciblée
-"Optimise la fonction calculate_stats() en réduisant la complexité"
+```bash
+# .bob/skills/
+ln -s ../../team-skills/skills/common/typescript-base.yaml
+ln -s ../../team-skills/skills/frontend/react.yaml
 
-Étape 4 : Benchmarking
-"Crée un script de benchmark pour comparer avant/après"
-
-Étape 5 : Tests
-"Vérifie que les tests passent toujours après optimisation"
-
-Étape 6 : Documentation
-"Documente les améliorations de performance dans PERFORMANCE.md"
+# .bob/rules.md
+# Règles du Projet Dashboard
+[Hérite des skills communs + spécificités du projet]
 ```
+
+### Avantages
+
+✅ Standards communs partagés  
+✅ Facile à maintenir (un seul endroit)  
+✅ Flexibilité par projet (rules spécifiques)  
+✅ Versionné avec Git  
+✅ Évolution collaborative
 
 ---
 
 ## 💡 Conseils Pratiques
 
-### Maximiser l'Efficacité
+### Démarrer Simple
 
-1. **Planifiez vos demandes**
-   - Réfléchissez à ce dont Bob a besoin
-   - Groupez les lectures de fichiers
-   - Soyez spécifique dans vos demandes
+1. **Commencez avec un skill de base** pour votre langage principal
+2. **Ajoutez quelques rules** essentielles
+3. **Testez avec Bob** sur des tâches simples
+4. **Itérez** en ajoutant progressivement
 
-2. **Utilisez les bons skills**
-   - Analyse → Comprendre
-   - Génération → Créer
-   - Refactoring → Améliorer
-   - Tests → Sécuriser
+### Mesurer l'Impact
 
-3. **Respectez les rules**
-   - Un outil par message → Clarté
-   - Validation → Contrôle
-   - Lecture groupée → Efficacité
-   - Modifications ciblées → Sécurité
+- **Avant** : Temps pour créer une feature
+- **Après** : Temps avec skills/rules
+- **Qualité** : Nombre de bugs, couverture de tests
+- **Cohérence** : Respect des standards
 
-### Éviter les Pièges
+### Partager avec l'Équipe
 
-❌ **À éviter** :
-```
-"Fais tout en une fois"
-"Suppose ce que je veux"
-"Réécris tout le fichier"
-"Ne me demande pas de confirmation"
-```
-
-✅ **À faire** :
-```
-"Étape par étape, en commençant par..."
-"Clarifie d'abord ce que je veux"
-"Modifie uniquement la fonction X"
-"Attends ma validation avant de continuer"
-```
-
----
-
-## 🎯 Exercices Pratiques
-
-Testez ces workflows dans le Lab 8 :
-
-1. **Exercice 1** : Utilisez le skill d'analyse sur du code legacy
-2. **Exercice 2** : Générez une application complète
-3. **Exercice 3** : Appliquez les rules dans un workflow complexe
-4. **Exercice 4** : Combinez skills et rules pour un refactoring complet
+1. **Créer un repo** de skills partagés
+2. **Documenter** l'utilisation
+3. **Former** l'équipe
+4. **Itérer** selon les retours
 
 ---
 

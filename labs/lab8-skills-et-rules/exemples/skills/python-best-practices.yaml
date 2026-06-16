@@ -1,0 +1,90 @@
+# Skill : Python Best Practices
+# Ce skill définit les meilleures pratiques pour le développement Python
+
+name: "Python Best Practices"
+description: "Standards et conventions pour le code Python de qualité"
+version: "1.0.0"
+
+# Langage cible
+language: python
+
+# Outils recommandés
+tools:
+  formatter: black
+  linter: ruff
+  type_checker: mypy
+  test_framework: pytest
+  documentation: sphinx
+
+# Configuration du style
+style:
+  max_line_length: 88
+  indent_size: 4
+  quote_style: double
+  trailing_comma: true
+
+# Type hints
+type_hints:
+  required: true
+  style: "PEP 484"
+  check_return_types: true
+  check_argument_types: true
+
+# Documentation
+documentation:
+  style: "Google"
+  required_for:
+    - public_functions
+    - public_classes
+    - public_methods
+  include_examples: true
+  include_type_info: true
+
+# Conventions de nommage
+naming_conventions:
+  classes: "PascalCase"
+  functions: "snake_case"
+  constants: "UPPER_SNAKE_CASE"
+  private_members: "_leading_underscore"
+  modules: "snake_case"
+
+# Bonnes pratiques
+best_practices:
+  - "Utiliser des noms descriptifs et significatifs"
+  - "Préférer les list comprehensions aux boucles simples"
+  - "Utiliser des context managers (with) pour les ressources"
+  - "Éviter les variables globales mutables"
+  - "Lever des exceptions plutôt que retourner None"
+  - "Utiliser pathlib pour les chemins de fichiers"
+  - "Préférer f-strings pour le formatage de chaînes"
+
+# Patterns recommandés
+patterns:
+  - name: "Dependency Injection"
+    description: "Injecter les dépendances plutôt que les créer"
+  - name: "Factory Pattern"
+    description: "Pour la création d'objets complexes"
+  - name: "Strategy Pattern"
+    description: "Pour les algorithmes interchangeables"
+
+# Tests
+testing:
+  framework: pytest
+  coverage_minimum: 80
+  conventions:
+    - "Un fichier de test par module (test_*.py)"
+    - "Une classe de test par classe testée"
+    - "Noms de tests descriptifs (test_should_*)"
+    - "Utiliser des fixtures pour le setup"
+    - "Mocker les dépendances externes"
+
+# Ce qu'il faut éviter
+avoid:
+  - "Utiliser 'except:' sans spécifier l'exception"
+  - "Modifier des arguments mutables par défaut"
+  - "Utiliser 'eval()' ou 'exec()'"
+  - "Importer avec '*' (from module import *)"
+  - "Utiliser des variables à une lettre (sauf i, j, k dans les boucles)"
+  - "Laisser du code commenté"
+
+# Made with Bob

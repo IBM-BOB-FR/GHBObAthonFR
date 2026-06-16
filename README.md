@@ -8,18 +8,19 @@ Bienvenue au Bobathon ! Un événement de formation pour découvrir et maîtrise
 GHBObAthon/
 ├── readme.md                    # Ce fichier
 ├── requirements.txt             # Dépendances Python pour tous les labs
-├── labs/                        # 11 labs pratiques (9h15-12h30 total)
+├── labs/                        # 10 labs pratiques
 │   ├── lab0-prise-en-main/     # 50-70 min ⭐
 │   ├── lab1-decouverte/        # 45-60 min ⭐
 │   ├── lab1bis-creer-une-appli/ # 45 min ⭐
 │   ├── lab2-refactoring/       # 60-75 min ⭐⭐
 │   ├── lab3-api-tests/         # 75-90 min ⭐⭐⭐
 │   ├── lab4-bobshell/          # 45-60 min ⭐⭐
-│   ├── lab4bis-data-science/   # 75-90 min ⭐⭐⭐
 │   ├── lab5-architecture/      # 90-120 min ⭐⭐⭐⭐
 │   ├── lab6-custom-mcp-modes/  # 75-90 min ⭐⭐⭐
 │   ├── lab7-devops-automation/ # 90-120 min ⭐⭐⭐⭐⭐
-│   └── lab8-skills-et-rules/   # 45-60 min ⭐⭐
+│   └── lab8-skills-et-rules/   # 45-60 min ⭐⭐⭐
+├── archive/                     # Labs archivés
+│   └── lab4bis-data-science/   # 75-90 min ⭐⭐⭐
 ```
 
 ## 🎯 Programme
@@ -39,11 +40,10 @@ Progression recommandée selon votre profil :
 - **[Lab 2](labs/lab2-refactoring)** : Refactoring et Amélioration de Code (intermédiaire) ⭐⭐
 - **[Lab 3](labs/lab3-api-tests)** : Création d'API et Tests (avancé) ⭐⭐⭐
 - **[Lab 4](labs/lab4-bobshell)** : BobShell et Utilisation en Ligne de Commande (intermédiaire) ⭐⭐
-- **[Lab 4bis](labs/lab4bis-data-science)** : Data Science et Analyse de Données (avancé) ⭐⭐⭐
 - **[Lab 5](labs/lab5-architecture)** : Architecture et Design Patterns (expert) ⭐⭐⭐⭐
 - **[Lab 6](labs/lab6-custom-mcp-modes)** : Création de Serveurs MCP et Modes Personnalisés (avancé) ⭐⭐⭐
 - **[Lab 7](labs/lab7-devops-automation)** : DevOps, Automation & Playbooks (expert) ⭐⭐⭐⭐⭐
-- **[Lab 8](labs/lab8-skills-et-rules)** : Skills et Rules - Les Super-Pouvoirs de Bob (intermédiaire) ⭐⭐
+- **[Lab 8](labs/lab8-skills-et-rules)** : Skills et Rules - Personnaliser Bob (avancé) ⭐⭐⭐
 
 ## 🗺️ Parcours d'Apprentissage
 
@@ -68,31 +68,28 @@ flowchart TD
     Choice -->|🔧 DevOps| Lab4[Lab 4: BobShell<br/>⭐⭐ 45-60min<br/>CLI automation, Scripts IA]
     Lab4 --> Lab7[Lab 7: DevOps Automation<br/>⭐⭐⭐⭐⭐ 90-120min<br/>Ansible, GitLab CI/CD, Monitoring]
     
-    %% Parcours Data Analyst
-    Choice -->|📊 Data Analyst| Lab4bis[Lab 4bis: Data Science<br/>⭐⭐⭐ 75-90min<br/>Pandas, ML, Visualisations]
-    
     %% Parcours Architecte
     Choice -->|🏗️ Architecte| Lab5[Lab 5: Architecture<br/>⭐⭐⭐⭐ 90-120min<br/>Design Patterns, Hexagonal, Microservices]
     
-    %% Parcours Avancé
-    Choice -->|🚀 Avancé| Lab6[Lab 6: Custom MCP Servers & Bob Modes<br/>⭐⭐⭐ 75-90min<br/>MCP Serveurs & Modes Bob personnalisés]
+    %% Parcours Avancé - Personnalisation
+    Choice -->|🚀 Avancé<br/>Personnalisation| Lab6[Lab 6: Custom MCP Servers & Bob Modes<br/>⭐⭐⭐ 75-90min<br/>MCP Serveurs & Modes Bob personnalisés]
+    Lab6 --> Lab8[Lab 8: Skills et Rules<br/>⭐⭐⭐ 45-60min<br/>Personnaliser Bob avec Skills & Rules]
     
     %% Styles
     classDef troncCommun fill:#4CAF50,stroke:#2E7D32,stroke-width:3px,color:#fff
     classDef developpeur fill:#2196F3,stroke:#1565C0,stroke-width:2px,color:#fff
     classDef devops fill:#FF9800,stroke:#E65100,stroke-width:2px,color:#fff
-    classDef data fill:#9C27B0,stroke:#6A1B9A,stroke-width:2px,color:#fff
     classDef architecte fill:#F44336,stroke:#C62828,stroke-width:2px,color:#fff
     classDef avance fill:#00BCD4,stroke:#006064,stroke-width:2px,color:#fff
+    classDef personnalisation fill:#9C27B0,stroke:#6A1B9A,stroke-width:2px,color:#fff
     classDef decision fill:#FFC107,stroke:#F57F17,stroke-width:3px,color:#000
     classDef milestone fill:#607D8B,stroke:#37474F,stroke-width:3px,color:#fff
     
     class Lab0,Lab1,Lab1bis troncCommun
     class Lab2,Lab3 developpeur
     class Lab4,Lab7 devops
-    class Lab4bis data
     class Lab5 architecte
-    class Lab6 avance
+    class Lab6,Lab8 avance
     class Choice decision
     class Start,End milestone
 ```
@@ -102,8 +99,8 @@ Commencez par les labs 0, 1 et 1bis pour acquérir les bases essentielles
 
 ### Parcours par Profil
 
-#### 👨‍💻 Parcours Développeur
-**Pour les développeurs souhaitant améliorer leur code et créer des APIs**
+#### 👨‍💻 Parcours Développeur·euse
+**Pour les développeur·euse·s souhaitant améliorer leur code et créer des APIs**
 
 ```
 Lab 2: Refactoring        Lab 3: API et Tests
@@ -115,7 +112,7 @@ Qualité du code          Tests complets
 ```
 
 #### 🔧 Parcours DevOps
-**Pour les ops et ingénieurs infrastructure**
+**Pour les ops et ingénieur·e·s infrastructure**
 
 ```
 Lab 4: BobShell          Lab 7: DevOps Automation
@@ -124,19 +121,6 @@ Lab 4: BobShell          Lab 7: DevOps Automation
 CLI automation           Ansible playbooks
 Scripts IA               GitLab CI/CD
 Pipelines CI/CD          Monitoring (Dynatrace)
-```
-
-#### 📊 Parcours Data Analyst
-**Pour l'analyse de données et le machine learning**
-
-```
-Lab 4bis: Data Science
-⭐⭐⭐ 75-90min
-
-Pandas & NumPy
-Visualisations
-Modèles ML
-Évaluation
 ```
 
 #### 🏗️ Parcours Architecte
@@ -152,23 +136,26 @@ Microservices
 SOLID, DRY, KISS
 ```
 
-#### 🚀 Parcours Avancé
-**Pour découvrir les usages avancés de Bob**
+#### 🚀 Parcours Avancé - Personnalisation
+**Pour découvrir les usages avancés et personnaliser Bob**
 
 ```
-Lab 6: Custom MCP Servers & Bob Modes
-⭐⭐⭐ 75-90min
+Lab 6: Custom MCP Servers & Bob Modes    Lab 8: Skills et Rules
+⭐⭐⭐ 75-90min                           ⭐⭐⭐ 45-60min
 
-Serveurs MCP personnalisés
-Outils personnalisés
-Modes Bob sur mesure
+Serveurs MCP personnalisés               Configuration Skills (YAML)
+Outils personnalisés                     Fichier Rules personnalisé
+Modes Bob sur mesure                     Adapter Bob à votre projet
+                                         Configurations réutilisables
 ```
+
+💡 **Parcours de personnalisation avancée** : Lab 6 pour créer des outils et modes personnalisés, puis Lab 8 pour configurer Bob avec Skills et Rules.
 
 ### Recommandations
 
-- **Débutants** : Suivez le tronc commun (Labs 0, 1, 1bis) puis choisissez UN parcours spécialisé
+- **Débutant·e·s** : Suivez le tronc commun (Labs 0, 1, 1bis) puis choisissez UN parcours spécialisé
 - **Intermédiaires** : Tronc commun + 2 parcours de votre choix
-- **Experts** : Tous les labs pour une maîtrise complète de Bob
+- **Expert·e·s** : Tous les labs pour une maîtrise complète de Bob
 
 **Durée totale estimée** :
 - Tronc commun : 2h20-3h15
