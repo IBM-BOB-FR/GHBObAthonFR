@@ -92,3 +92,4 @@ yarn.lock..bfg-report/
 
 #tests
 .tests/
+.Logs/

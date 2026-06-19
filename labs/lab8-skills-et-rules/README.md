@@ -4,6 +4,16 @@
 > **Difficulté** : ⭐⭐⭐ Avancé
 > **Objectif** : Maîtriser la configuration avancée de Bob avec Skills et Rules
 
+## 🎥 Introduction Vidéo
+
+Avant de commencer, regardez cette vidéo qui explique les concepts de Skills, Modes et Rules dans Bob :
+
+[![Compétences vs modes vs règles – Laissez IBM Bob parler comme un pirate](https://img.youtube.com/vi/gbIXpgZHzMM/0.jpg)](https://www.youtube.com/watch?v=gbIXpgZHzMM)
+
+**[▶️ Regarder la vidéo : Compétences vs modes vs règles](https://www.youtube.com/watch?v=gbIXpgZHzMM)**
+
+> **Note** : La vidéo ne s'affiche pas directement dans le README sur GitHub, mais le lien cliquable vous permettra de l'ouvrir dans votre navigateur. Dans certains éditeurs Markdown (comme VS Code avec des extensions appropriées), la miniature peut s'afficher.
+
 ---
 
 ## 📋 Objectifs d'Apprentissage
@@ -28,27 +38,34 @@
 
 ## 🧠 Qu'est-ce que les "Skills" de Bob ?
 
-Les **Skills** sont des fichiers de configuration YAML situés dans `.bob/skills/` qui permettent de :
+> **Documentation officielle** : https://bob.ibm.com/docs/ide/features/skills
+
+Les **Skills** sont des fichiers Markdown situés dans `.bob/skills/` qui permettent de :
 
 1. **Définir des comportements spécifiques** : Créer des compétences personnalisées pour Bob
-2. **Configurer des outils** : Définir comment Bob utilise certains outils
-3. **Créer des workflows** : Automatiser des séquences d'actions
+2. **Configurer des workflows** : Automatiser des séquences d'actions
+3. **Créer des instructions spécialisées** : Définir des flux de travail pour des tâches spécifiques
 4. **Partager des configurations** : Réutiliser des skills dans plusieurs projets
 
 ### Structure d'un Skill
 
-```yaml
-# .bob/skills/mon-skill.yaml
-name: "Mon Skill Personnalisé"
-description: "Description de ce que fait ce skill"
-version: "1.0.0"
+```markdown
+# .bob/skills/mon-skill.md
 
-# Configuration du skill
-config:
-  # Paramètres spécifiques
+# Mon Skill Personnalisé
+
+Description de ce que fait ce skill.
+
+## Instructions
+
+- Instruction 1
+- Instruction 2
+- Instruction 3
+
+## Exemples
+
+Exemples d'utilisation...
 ```
-
-**Documentation officielle** : https://internal.bob.ibm.com/docs/ide/features/skills
 
 ---
 
@@ -85,8 +102,6 @@ Le fichier **Rules** (`.bob/rules.md`) contient des instructions personnalisées
 - Créer des tests d'intégration pour les API
 ```
 
-**Documentation officielle** : https://internal.bob.ibm.com/docs/ide/configuration/rules
-
 ---
 
 ## 🚀 Mise en Place
@@ -95,22 +110,50 @@ Le fichier **Rules** (`.bob/rules.md`) contient des instructions personnalisées
 
 - Avoir complété les Labs 0, 1 et 2
 - Comprendre les bases de YAML
-- Avoir un projet avec Bob configuré
+- Avoir ce projet (GHBObAthonFR) ouvert dans VS Code avec Bob
+
+### 📍 Emplacement du Répertoire `.bob`
+
+**Important** : Selon la [documentation officielle de Bob](https://bob.ibm.com/docs/ide/configuration/rules), le répertoire `.bob` doit être placé :
+
+1. **À la racine de votre projet courant** (recommandé pour ce lab) :
+   ```
+   GHBObAthonFR/.bob/
+   ```
+   - S'applique uniquement à ce projet
+   - Idéal pour les configurations spécifiques au projet
+
+2. **Dans votre répertoire home** (pour effet global) :
+   ```
+   ~/.bob/rules/
+   ```
+   - S'applique à tous vos projets
+   - Utile pour les normes personnelles ou organisationnelles
+
+**Pour ce lab, nous utiliserons la racine du projet** (`.bob/` à la racine de GHBObAthonFR).
 
 ### Structure du Lab
 
 ```
-lab8-skills-et-rules/
-├── README.md (ce fichier)
-├── exercices/
-│   ├── ex1-premier-skill/
-│   ├── ex2-rules-personnalises/
-│   ├── ex3-skill-avance/
-│   └── ex4-workflow-complet/
-├── exemples/
-│   ├── skills/
-│   └── rules/
-└── solutions/
+GHBObAthonFR/                      # Racine du projet
+├── .bob/                          # ← Configuration Bob pour tout le projet
+│   ├── skills/                    # ← Vos skills personnalisés
+│   └── rules/                     # ← Vos règles personnalisées (répertoire)
+│       ├── 01-architecture.md     # ← Règles d'architecture
+│       ├── 02-conventions.md      # ← Conventions de code
+│       └── 03-bonnes-pratiques.md # ← Bonnes pratiques
+├── labs/
+│   └── lab8-skills-et-rules/
+│       ├── README.md (ce fichier)
+│       ├── exercices/
+│       │   ├── ex1-skills-analyse/
+│       │   ├── ex2-rules-personnalises/
+│       │   ├── ex3-rules-workflow/
+│       │   └── ex4-optimisation/
+│       ├── exemples/
+│       │   ├── skills/
+│       │   └── rules/
+│       └── solutions/
 ```
 
 ---
@@ -123,42 +166,60 @@ Créer un skill simple qui définit des préférences de code pour Python.
 
 ### Instructions
 
-1. **Créez la structure de base** :
+1. **Créez la structure de base à la racine du projet** :
 
 ```
-Crée le répertoire .bob/skills/ dans exercices/ex1-premier-skill/
+Crée le répertoire .bob/skills/ à la racine du projet (GHBObAthonFR/.bob/skills/)
 ```
 
 2. **Créez votre premier skill** :
 
 ```
-Crée .bob/skills/python-style.yaml avec :
+Crée .bob/skills/python-style.md à la racine du projet avec :
 
-name: "Python Style Guide"
-description: "Préférences de style pour le code Python"
-version: "1.0.0"
+# Python Style Guide
 
-preferences:
-  language: python
-  style_guide: "PEP 8"
-  type_hints: required
-  docstring_style: "Google"
-  max_line_length: 88
-  formatter: "black"
-  linter: "ruff"
-  
-conventions:
-  - "Utiliser des noms descriptifs pour les variables"
-  - "Préférer les list comprehensions aux boucles simples"
-  - "Toujours ajouter des type hints"
-  - "Documenter toutes les fonctions publiques"
+Préférences de style pour le code Python.
+
+## Standards
+
+- **Langage** : Python
+- **Guide de style** : PEP 8
+- **Type hints** : Obligatoires
+- **Style de docstring** : Google
+- **Longueur de ligne max** : 88 caractères
+- **Formateur** : Black
+- **Linter** : Ruff
+
+## Conventions
+
+- Utiliser des noms descriptifs pour les variables
+- Préférer les list comprehensions aux boucles simples
+- Toujours ajouter des type hints
+- Documenter toutes les fonctions publiques
+
+## Exemples
+
+```python
+def calculate_average(numbers: list[float]) -> float:
+    """Calculate the average of a list of numbers.
+    
+    Args:
+        numbers: List of numbers to average.
+        
+    Returns:
+        The average value.
+    """
+    return sum(numbers) / len(numbers)
+```
 ```
 
 3. **Testez le skill** :
 
 ```
-Crée un fichier test.py et demande à Bob de générer une fonction
-qui respecte les conventions du skill python-style.yaml
+Crée un fichier test.py et demande à Bob de générer une fonction calculate_average()
+qui prend une liste de nombres en paramètre et retourne leur moyenne,
+en respectant les conventions du skill python-style.md
 ```
 
 ### ✅ Critères de Validation
@@ -176,43 +237,73 @@ Les **Skills** permettent de :
 - Partager des configurations dans l'équipe
 - Maintenir la cohérence du code
 
+
+4. **Refactoring**
+
+Demandez à Bob de refactorer le code `labs/lab8-skills-et-rules/exercices/ex1-skills-analyse/messy_code.py` en utilisant le skill que vous venez de créer.
+
 ---
 
 ## 🔨 Exercice 2 : Configurer des Rules Personnalisées (15 min)
 
 ### Objectif
 
-Créer un fichier `.bob/rules.md` qui guide Bob dans votre projet.
+Créer des fichiers de règles organisés dans `.bob/rules/` qui guident Bob dans votre projet.
 
 ### Instructions
 
-1. **Créez le fichier Rules** :
+1. **Créez le répertoire et les fichiers de règles à la racine du projet** :
 
 ```
-Crée .bob/rules.md dans exercices/ex2-rules-personnalises/ avec :
+Crée la structure .bob/rules/ à la racine du projet (GHBObAthonFR/.bob/rules/) avec :
 
-# Règles du Projet
+1. .bob/rules/01-architecture.md :
 
-## Architecture
+# Architecture du Projet
 
 Ce projet suit une architecture en couches :
 - **Présentation** : API REST avec FastAPI
 - **Métier** : Logique dans des services
 - **Données** : Repository pattern avec SQLAlchemy
 
-## Conventions de Nommage
+## Principes
+
+- Séparation des responsabilités
+- Dépendances vers l'intérieur
+- Interfaces pour l'abstraction
+
+
+2. .bob/rules/02-conventions.md :
+
+# Conventions de Nommage
 
 - Classes : PascalCase (ex: UserService)
 - Fonctions : snake_case (ex: get_user_by_id)
 - Constantes : UPPER_SNAKE_CASE (ex: MAX_RETRY_COUNT)
 - Fichiers : snake_case (ex: user_service.py)
 
-## Bonnes Pratiques
+## Formatage
+
+- Utiliser Black pour le formatage
+- Ligne maximale : 88 caractères
+- Imports organisés avec isort
+
+
+3. .bob/rules/03-bonnes-pratiques.md :
+
+# Bonnes Pratiques
+
+## Validation et Sécurité
 
 - Toujours valider les entrées utilisateur
 - Utiliser des exceptions personnalisées
 - Logger les erreurs avec le contexte
+
+## Tests et Qualité
+
 - Écrire des tests pour chaque nouvelle fonctionnalité
+- Minimum 80% de couverture de code
+- Tests unitaires + tests d'intégration
 
 ## Ce qu'il faut éviter
 
@@ -225,11 +316,15 @@ Ce projet suit une architecture en couches :
 2. **Testez les Rules** :
 
 ```
-Demande à Bob de créer un service UserService qui :
-- Récupère un utilisateur par ID
-- Valide les données
-- Gère les erreurs
-- Respecte les rules du projet
+Demande à Bob de créer un service UserService en Python avec FastAPI qui :
+- Implémente une méthode get_user_by_id(user_id: int) -> User
+- Utilise un repository UserRepository pour accéder aux données
+- Valide que l'ID utilisateur est positif
+- Lève une exception UserNotFoundException si l'utilisateur n'existe pas
+- Lève une exception ValidationError si l'ID est invalide
+- Utilise le logging pour tracer les erreurs
+- Respecte toutes les rules du projet (architecture en couches, conventions de nommage, bonnes pratiques)
+- Inclut les type hints et docstrings Google style
 ```
 
 3. **Observez le comportement** :
@@ -242,18 +337,22 @@ Bob devrait automatiquement :
 
 ### ✅ Critères de Validation
 
-- [ ] Le fichier `.bob/rules.md` est créé
+- [ ] Le répertoire `.bob/rules/` est créé avec les 3 fichiers
 - [ ] Les rules couvrent architecture, conventions et bonnes pratiques
 - [ ] Bob respecte les rules dans le code généré
 - [ ] Vous comprenez comment les rules influencent Bob
+- [ ] Vous comprenez l'avantage d'organiser les rules en plusieurs fichiers
 
 ### 💡 Points Clés
 
-Les **Rules** permettent de :
-- Communiquer le contexte du projet à Bob
-- Définir des standards spécifiques
-- Éviter les erreurs courantes
-- Maintenir la cohérence architecturale
+Les **Rules organisées en répertoire** permettent de :
+- **Séparer les préoccupations** : Un fichier par thème (architecture, conventions, etc.)
+- **Faciliter la maintenance** : Modifier une catégorie sans toucher aux autres
+- **Améliorer la lisibilité** : Fichiers plus courts et ciblés
+- **Collaborer efficacement** : Différentes personnes peuvent gérer différents fichiers
+- **Réutiliser** : Copier uniquement les fichiers de règles pertinents dans d'autres projets
+
+**Note** : Les fichiers sont chargés par ordre alphabétique (d'où les préfixes 01-, 02-, 03-)
 
 ---
 
@@ -265,48 +364,66 @@ Créer un skill qui définit un workflow complet pour le développement.
 
 ### Instructions
 
-1. **Créez un skill de workflow** :
+1. **Créez un skill de workflow à la racine du projet** :
 
 ```
-Crée .bob/skills/tdd-workflow.yaml dans exercices/ex3-skill-avance/ avec :
+Crée .bob/skills/tdd-workflow.md à la racine du projet (GHBObAthonFR/.bob/skills/tdd-workflow.md) avec :
 
-name: "TDD Workflow"
-description: "Workflow Test-Driven Development"
-version: "1.0.0"
+# TDD Workflow
 
-workflow:
-  steps:
-    - name: "Écrire le test"
-      description: "Créer un test qui échoue"
-      action: "create_test"
-      
-    - name: "Implémenter"
-      description: "Écrire le code minimal pour passer le test"
-      action: "implement_feature"
-      
-    - name: "Refactorer"
-      description: "Améliorer le code sans casser les tests"
-      action: "refactor_code"
-      
-    - name: "Documenter"
-      description: "Ajouter la documentation"
-      action: "add_documentation"
+Workflow Test-Driven Development pour garantir la qualité du code.
 
-test_framework: "pytest"
-coverage_minimum: 80
+## Étapes du Workflow
 
-conventions:
-  - "Red-Green-Refactor cycle"
-  - "Un test par comportement"
-  - "Tests lisibles et maintenables"
-  - "Mocks pour les dépendances externes"
+### 1. Écrire le test (Red)
+Créer un test qui échoue pour la fonctionnalité à implémenter.
+
+### 2. Implémenter (Green)
+Écrire le code minimal pour faire passer le test.
+
+### 3. Refactorer (Refactor)
+Améliorer le code sans casser les tests.
+
+### 4. Documenter
+Ajouter la documentation nécessaire.
+
+## Configuration
+
+- **Framework de test** : pytest
+- **Couverture minimale** : 80%
+
+## Conventions
+
+- Suivre le cycle Red-Green-Refactor
+- Un test par comportement
+- Tests lisibles et maintenables
+- Utiliser des mocks pour les dépendances externes
+
+## Exemple
+
+```python
+# 1. Test (Red)
+def test_calculate_average():
+    assert calculate_average([1, 2, 3]) == 2.0
+
+# 2. Implémentation (Green)
+def calculate_average(numbers):
+    return sum(numbers) / len(numbers)
+
+# 3. Refactoring + Documentation
+def calculate_average(numbers: list[float]) -> float:
+    """Calculate average of numbers."""
+    if not numbers:
+        raise ValueError("List cannot be empty")
+    return sum(numbers) / len(numbers)
+```
 ```
 
 2. **Utilisez le workflow** :
 
 ```
 Demande à Bob de créer une fonctionnalité "calculer la moyenne d'une liste"
-en suivant le workflow TDD défini dans tdd-workflow.yaml
+en suivant le workflow TDD défini dans tdd-workflow.md
 ```
 
 3. **Observez le processus** :
@@ -343,48 +460,52 @@ Combiner Skills et Rules pour créer un environnement de développement optimal.
 
 ### Instructions
 
-1. **Créez une configuration complète** :
+1. **Enrichissez votre configuration à la racine du projet** :
 
 ```
-Dans exercices/ex4-workflow-complet/, crée :
+À la racine du projet (GHBObAthonFR/.bob/), ajoutez :
 
-1. .bob/skills/api-development.yaml :
+1. .bob/skills/api-development.md :
    - Standards pour les API REST
    - Validation des données
    - Gestion d'erreurs
    - Documentation OpenAPI
 
-2. .bob/skills/security.yaml :
+2. .bob/skills/security.md :
    - Bonnes pratiques de sécurité
    - Validation des entrées
    - Authentification/Autorisation
    - Protection contre les vulnérabilités courantes
 
-3. .bob/rules.md :
-   - Architecture du projet
+3. Ajoutez un nouveau fichier de règles .bob/rules/04-api-standards.md :
+   - Standards spécifiques aux API REST
    - Stack technique (FastAPI, PostgreSQL, Redis)
-   - Conventions de l'équipe
    - Processus de review
+   - Documentation requise
 ```
 
 2. **Créez une API complète** :
 
 ```
-Demande à Bob de créer une API REST pour gérer des articles de blog avec :
+Demande à Bob de refactorer le code dans labs/lab8-skills-et-rules/exercices/ex4-optimisation/legacy/
+en créant une API REST moderne pour gérer des articles de blog avec :
 - CRUD complet
 - Authentification JWT
 - Validation des données
 - Tests unitaires et d'intégration
 - Documentation OpenAPI
-- Respect de tous les skills et rules
+- Respect de tous les skills et rules configurés dans .bob/
 ```
 
 3. **Analysez le résultat** :
 
 Vérifiez que Bob a :
-- Suivi l'architecture définie dans rules.md
-- Appliqué les standards de api-development.yaml
-- Implémenté les pratiques de security.yaml
+- Suivi l'architecture définie dans .bob/rules/01-architecture.md
+- Respecté les conventions de .bob/rules/02-conventions.md
+- Appliqué les bonnes pratiques de .bob/rules/03-bonnes-pratiques.md
+- Suivi les standards API de .bob/rules/04-api-standards.md
+- Appliqué les standards de .bob/skills/api-development.md
+- Implémenté les pratiques de .bob/skills/security.md
 - Créé un code cohérent et de qualité
 
 ### ✅ Critères de Validation
@@ -410,34 +531,34 @@ La **combinaison Skills + Rules** permet :
 
 ### Mission
 
-Créer une bibliothèque de skills réutilisables pour votre équipe.
+Enrichir votre configuration `.bob/` à la racine du projet avec une bibliothèque de skills réutilisables.
 
 ### Instructions
 
 ```
-Crée exercices/bonus/skill-library/ avec :
+Enrichissez votre configuration à la racine du projet (GHBObAthonFR/.bob/) :
 
-1. skills/languages/
-   - python.yaml
-   - typescript.yaml
-   - java.yaml
+1. .bob/skills/languages/
+   - python.md
+   - typescript.md
+   - java.md
 
-2. skills/frameworks/
-   - fastapi.yaml
-   - react.yaml
-   - spring-boot.yaml
+2. .bob/skills/frameworks/
+   - fastapi.md
+   - react.md
+   - spring-boot.md
 
-3. skills/practices/
-   - tdd.yaml
-   - clean-code.yaml
-   - security.yaml
+3. .bob/skills/practices/
+   - tdd.md
+   - clean-code.md
+   - security.md
 
-4. templates/
+4. .bob/templates/
    - rules-template.md
-   - skill-template.yaml
+   - skill-template.md
 
-5. README.md :
-   - Comment utiliser la bibliothèque
+5. .bob/README.md :
+   - Comment utiliser la bibliothèque de skills
    - Comment contribuer
    - Exemples d'utilisation
 ```
@@ -445,30 +566,45 @@ Crée exercices/bonus/skill-library/ avec :
 ### Exemples de Skills
 
 **Python Skill** :
-```yaml
-name: "Python Best Practices"
-version: "1.0.0"
-language: python
-formatter: black
-linter: ruff
-type_checker: mypy
-test_framework: pytest
-conventions:
-  - "PEP 8 compliance"
-  - "Type hints required"
-  - "Google-style docstrings"
+```markdown
+# Python Best Practices
+
+## Configuration
+
+- **Formateur** : Black
+- **Linter** : Ruff
+- **Type checker** : mypy
+- **Framework de test** : pytest
+
+## Conventions
+
+- Conformité PEP 8
+- Type hints obligatoires
+- Docstrings style Google
 ```
 
 **FastAPI Skill** :
-```yaml
-name: "FastAPI Development"
-version: "1.0.0"
-framework: fastapi
-patterns:
-  - "Dependency injection"
-  - "Pydantic models for validation"
-  - "Async/await for I/O operations"
-  - "OpenAPI documentation"
+```markdown
+# FastAPI Development
+
+## Patterns Recommandés
+
+- Utiliser l'injection de dépendances
+- Modèles Pydantic pour la validation
+- Async/await pour les opérations I/O
+- Documentation OpenAPI automatique
+
+## Structure
+
+```python
+from fastapi import FastAPI, Depends
+
+app = FastAPI()
+
+@app.get("/items/{item_id}")
+async def read_item(item_id: int):
+    return {"item_id": item_id}
+```
 ```
 
 ---
@@ -504,7 +640,7 @@ Vérifiez que vous maîtrisez :
 
 ## 🎓 Ce que Vous Avez Appris
 
-### Skills (.bob/skills/*.yaml)
+### Skills (.bob/skills/*.md)
 
 **Définition** : Fichiers de configuration YAML qui définissent des comportements spécifiques
 
@@ -587,15 +723,15 @@ structurée             en langage naturel
 # Installer PyYAML si nécessaire
 pip install pyyaml
 
-# Valider un fichier YAML
-python3 -c "import yaml; print('✅ YAML valide' if yaml.safe_load(open('.bob/skills/mon-skill.yaml')) else '❌ YAML invalide')"
+# Vérifier qu'un skill existe et est lisible
+cat .bob/skills/mon-skill.md | head -10
 ```
 
-### Vérifier les Rules Markdown
+### Vérifier les Rules
 
 ```bash
-# Vérifier que le fichier existe et est lisible
-cat .bob/rules.md | head -10
+# Vérifier qu'un fichier de rules existe et est lisible
+cat .bob/rules/01-architecture.md | head -10
 ```
 
 ### Tester avec Bob
