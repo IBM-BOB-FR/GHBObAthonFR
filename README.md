@@ -18,7 +18,8 @@ GHBObAthon/
 │   ├── lab5-architecture/      # 90-120 min ⭐⭐⭐⭐
 │   ├── lab6-custom-mcp-modes/  # 75-90 min ⭐⭐⭐
 │   ├── lab7-devops-automation/ # 90-120 min ⭐⭐⭐⭐⭐
-│   └── lab8-skills-et-rules/   # 45-60 min ⭐⭐⭐
+│   ├── lab8-skills-et-rules/   # 45-60 min ⭐⭐⭐
+│   └── lab9-bob-ibmi/          # 60-90 min ⭐⭐⭐
 ├── archive/                     # Labs archivés
 │   └── lab4bis-data-science/   # 75-90 min ⭐⭐⭐
 ```
@@ -44,6 +45,7 @@ Progression recommandée selon votre profil :
 - **[Lab 6](labs/lab6-custom-mcp-modes)** : Création de Serveurs MCP et Modes Personnalisés (avancé) ⭐⭐⭐
 - **[Lab 7](labs/lab7-devops-automation)** : DevOps, Automation & Playbooks (expert) ⭐⭐⭐⭐⭐
 - **[Lab 8](labs/lab8-skills-et-rules)** : Skills et Rules - Personnaliser Bob (avancé) ⭐⭐⭐
+- **[Lab 9](labs/lab9-bob-ibmi.md)** : Introduction à Bob & IBM i — Modernisation d'applications IBM i (intermédiaire à avancé) ⭐⭐⭐
 
 ## 🗺️ Parcours d'Apprentissage
 
@@ -273,6 +275,22 @@ Apprenez à :
 - Orchestrer des déploiements complexes
 
 **Technologies** : Ansible, GitLab CI/CD, NeoLoad, Dynatrace, RPA, IA Factory, API Marketplace, TSDL
+
+### [Lab 9 : Introduction à Bob & IBM i](labs/lab9-bob-ibmi.md) ⭐⭐⭐
+**Durée** : 60-90 minutes
+**Niveau** : Intermédiaire à Avancé
+
+Six labs pratiques pour découvrir la modernisation IBM i avec Bob. L'introduction inclut une démonstration du Package Premium pour i disponible ce 24 Juin et qui permet notamment à Bob d'avoir des super-pouvoirs IBM i, avec un acces direct vers le monde natif (QSYS) IBM i depuis Bob.
+
+Apprenez à :
+- Utiliser Bob pour comprendre et moderniser du code RPG/COBOL/CL/SQL
+- Convertir du RPG à format fixe en RPG libre moderne
+- Transformer des accès RLA en SQL avec JOIN
+- Construire une interface web moderne pour une application IBM i
+- Configurer Bob avec les outils MCP IBM i
+- Automatiser la gestion IBM i avec Ansible et Bob
+
+🔗 [Accéder à l'introduction du lab sur GitHub](labs/lab9-bob-ibmi.md)
 
 ### [Lab 8 : Skills et Rules - Les Super-Pouvoirs de Bob](labs/lab8-skills-et-rules) ⭐⭐
 **Durée** : 45-60 minutes
