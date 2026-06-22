@@ -212,15 +212,14 @@ def calculate_average(numbers: list[float]) -> float:
     """
     return sum(numbers) / len(numbers)
 ```
-```
+
 
 3. **Testez le skill** :
 
-```
 Crée un fichier test.py et demande à Bob de générer une fonction calculate_average()
 qui prend une liste de nombres en paramètre et retourne leur moyenne,
 en respectant les conventions du skill python-style.md
-```
+
 
 ### ✅ Critères de Validation
 
@@ -254,11 +253,10 @@ Créer des fichiers de règles organisés dans `.bob/rules/` qui guident Bob dan
 
 1. **Créez le répertoire et les fichiers de règles à la racine du projet** :
 
+Crée la structure `.bob/rules/` à la racine du projet `(GHBObAthonFR/.bob/rules/)` avec :
+
+1. `.bob/rules/01-architecture.md` :
 ```
-Crée la structure .bob/rules/ à la racine du projet (GHBObAthonFR/.bob/rules/) avec :
-
-1. .bob/rules/01-architecture.md :
-
 # Architecture du Projet
 
 Ce projet suit une architecture en couches :
@@ -271,9 +269,10 @@ Ce projet suit une architecture en couches :
 - Séparation des responsabilités
 - Dépendances vers l'intérieur
 - Interfaces pour l'abstraction
+```
 
-
-2. .bob/rules/02-conventions.md :
+2. `.bob/rules/02-conventions.md` :
+```
 
 # Conventions de Nommage
 
@@ -287,10 +286,11 @@ Ce projet suit une architecture en couches :
 - Utiliser Black pour le formatage
 - Ligne maximale : 88 caractères
 - Imports organisés avec isort
+```
 
+3. `.bob/rules/03-bonnes-pratiques.md` :
 
-3. .bob/rules/03-bonnes-pratiques.md :
-
+```
 # Bonnes Pratiques
 
 ## Validation et Sécurité
@@ -417,7 +417,7 @@ def calculate_average(numbers: list[float]) -> float:
         raise ValueError("List cannot be empty")
     return sum(numbers) / len(numbers)
 ```
-```
+
 
 2. **Utilisez le workflow** :
 
