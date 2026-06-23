@@ -116,14 +116,14 @@ Le fichier **Rules** (`.bob/rules.md`) contient des instructions personnalisées
 
 **Important** : Selon la [documentation officielle de Bob](https://bob.ibm.com/docs/ide/configuration/rules), le répertoire `.bob` doit être placé :
 
-1. **À la racine de votre projet courant** (recommandé pour ce lab) :
+**1. À la racine de votre projet courant** (recommandé pour ce lab) :
    ```
    GHBObAthonFR/.bob/
    ```
    - S'applique uniquement à ce projet
    - Idéal pour les configurations spécifiques au projet
 
-2. **Dans votre répertoire home** (pour effet global) :
+**2. Dans votre répertoire home** (pour effet global) :
    ```
    ~/.bob/rules/
    ```
@@ -166,17 +166,15 @@ Créer un skill simple qui définit des préférences de code pour Python.
 
 ### Instructions
 
-1. **Créez la structure de base à la racine du projet** :
+**1. Créez la structure de base à la racine du projet** :
 
+Crée le répertoire `.bob/skills/` à la racine du projet (`GHBObAthonFR/.bob/skills/`)
+
+
+**2. Créez votre premier skill** :
+
+Crée `.bob/skills/python-style.md` à la racine du projet avec :
 ```
-Crée le répertoire .bob/skills/ à la racine du projet (GHBObAthonFR/.bob/skills/)
-```
-
-2. **Créez votre premier skill** :
-
-```
-Crée .bob/skills/python-style.md à la racine du projet avec :
-
 # Python Style Guide
 
 Préférences de style pour le code Python.
@@ -214,12 +212,15 @@ def calculate_average(numbers: list[float]) -> float:
 ```
 
 
-3. **Testez le skill** :
+**3. Testez le skill** :
 
 Crée un fichier test.py et demande à Bob de générer une fonction calculate_average()
 qui prend une liste de nombres en paramètre et retourne leur moyenne,
 en respectant les conventions du skill python-style.md
 
+**4. Refactoring**
+
+Demandez à Bob de refactorer le code `labs/lab8-skills-et-rules/exercices/ex1-skills-analyse/messy_code.py` en utilisant le skill que vous venez de créer.
 
 ### ✅ Critères de Validation
 
@@ -236,11 +237,6 @@ Les **Skills** permettent de :
 - Partager des configurations dans l'équipe
 - Maintenir la cohérence du code
 
-
-4. **Refactoring**
-
-Demandez à Bob de refactorer le code `labs/lab8-skills-et-rules/exercices/ex1-skills-analyse/messy_code.py` en utilisant le skill que vous venez de créer.
-
 ---
 
 ## 🔨 Exercice 2 : Configurer des Rules Personnalisées (15 min)
@@ -251,7 +247,7 @@ Créer des fichiers de règles organisés dans `.bob/rules/` qui guident Bob dan
 
 ### Instructions
 
-1. **Créez le répertoire et les fichiers de règles à la racine du projet** :
+**1. Créez le répertoire et les fichiers de règles à la racine du projet** :
 
 Crée la structure `.bob/rules/` à la racine du projet `(GHBObAthonFR/.bob/rules/)` avec :
 
@@ -313,7 +309,7 @@ Ce projet suit une architecture en couches :
 - Pas de print() pour le debug (utiliser logging)
 ```
 
-2. **Testez les Rules** :
+**2. Testez les Rules** :
 
 ```
 Demande à Bob de créer un service UserService en Python avec FastAPI qui :
@@ -327,7 +323,7 @@ Demande à Bob de créer un service UserService en Python avec FastAPI qui :
 - Inclut les type hints et docstrings Google style
 ```
 
-3. **Observez le comportement** :
+**3. Observez le comportement** :
 
 Bob devrait automatiquement :
 - Suivre l'architecture en couches
@@ -364,11 +360,11 @@ Créer un skill qui définit un workflow complet pour le développement.
 
 ### Instructions
 
-1. **Créez un skill de workflow à la racine du projet** :
+**1. Créez un skill de workflow à la racine du projet** :
 
+
+Crée `.bob/skills/tdd-workflow.md` à la racine du projet (`GHBObAthonFR/.bob/skills/tdd-workflow.md`) avec :
 ```
-Crée .bob/skills/tdd-workflow.md à la racine du projet (GHBObAthonFR/.bob/skills/tdd-workflow.md) avec :
-
 # TDD Workflow
 
 Workflow Test-Driven Development pour garantir la qualité du code.
@@ -419,14 +415,14 @@ def calculate_average(numbers: list[float]) -> float:
 ```
 
 
-2. **Utilisez le workflow** :
+**2. Utilisez le workflow** :
 
 ```
 Demande à Bob de créer une fonctionnalité "calculer la moyenne d'une liste"
 en suivant le workflow TDD défini dans tdd-workflow.md
 ```
 
-3. **Observez le processus** :
+**3. Observez le processus** :
 
 Bob devrait :
 - Créer d'abord les tests
@@ -460,31 +456,34 @@ Combiner Skills et Rules pour créer un environnement de développement optimal.
 
 ### Instructions
 
-1. **Enrichissez votre configuration à la racine du projet** :
+**1. Enrichissez votre configuration à la racine du projet** :
 
+À la racine du projet (`GHBObAthonFR/.bob/`), ajoutez :
+
+
+1. .`bob/skills/api-development.md` :
 ```
-À la racine du projet (GHBObAthonFR/.bob/), ajoutez :
-
-1. .bob/skills/api-development.md :
    - Standards pour les API REST
    - Validation des données
    - Gestion d'erreurs
    - Documentation OpenAPI
-
-2. .bob/skills/security.md :
+```
+2. `.bob/skills/security.md` :
+```
    - Bonnes pratiques de sécurité
    - Validation des entrées
    - Authentification/Autorisation
    - Protection contre les vulnérabilités courantes
-
-3. Ajoutez un nouveau fichier de règles .bob/rules/04-api-standards.md :
+```
+3. Ajoutez un nouveau fichier de règles `.bob/rules/04-api-standards.md` :
+```
    - Standards spécifiques aux API REST
    - Stack technique (FastAPI, PostgreSQL, Redis)
    - Processus de review
    - Documentation requise
 ```
 
-2. **Créez une API complète** :
+**2. Créez une API complète** :
 
 ```
 Demande à Bob de refactorer le code dans labs/lab8-skills-et-rules/exercices/ex4-optimisation/legacy/
@@ -497,7 +496,7 @@ en créant une API REST moderne pour gérer des articles de blog avec :
 - Respect de tous les skills et rules configurés dans .bob/
 ```
 
-3. **Analysez le résultat** :
+**3. Analysez le résultat** :
 
 Vérifiez que Bob a :
 - Suivi l'architecture définie dans .bob/rules/01-architecture.md
@@ -535,29 +534,30 @@ Enrichir votre configuration `.bob/` à la racine du projet avec une bibliothèq
 
 ### Instructions
 
+
+Enrichissez votre configuration à la racine du projet (`GHBObAthonFR/.bob/`) :
+
+1. `.bob/skills/languages/`
+   - `python.md`
+   - `typescript.md`
+   - `java.md`
+
+2. `.bob/skills/frameworks/`
+   - `fastapi.md`
+   - `react.md`
+   - `spring-boot.md`
+
+3. `.bob/skills/practices/`
+   - `tdd.md`
+   - `clean-code.md`
+   - `security.md`
+
+4. `.bob/templates/`
+   - `rules-template.md`
+   - `skill-template.md`
+
+5. `.bob/README.md` :
 ```
-Enrichissez votre configuration à la racine du projet (GHBObAthonFR/.bob/) :
-
-1. .bob/skills/languages/
-   - python.md
-   - typescript.md
-   - java.md
-
-2. .bob/skills/frameworks/
-   - fastapi.md
-   - react.md
-   - spring-boot.md
-
-3. .bob/skills/practices/
-   - tdd.md
-   - clean-code.md
-   - security.md
-
-4. .bob/templates/
-   - rules-template.md
-   - skill-template.md
-
-5. .bob/README.md :
    - Comment utiliser la bibliothèque de skills
    - Comment contribuer
    - Exemples d'utilisation
@@ -604,7 +604,6 @@ app = FastAPI()
 @app.get("/items/{item_id}")
 async def read_item(item_id: int):
     return {"item_id": item_id}
-```
 ```
 
 ---
