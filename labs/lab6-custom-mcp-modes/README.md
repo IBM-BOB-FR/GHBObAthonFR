@@ -220,7 +220,7 @@ Ce script vérifie :
 
 1. Ouvrez les Paramètres Bob (icône d'engrenage ⚙️)
 2. Naviguez vers la section **MCP**
-3. Choisissez **MCPs de Projet** (recommandé pour ce lab)
+3. Choisissez **MCPs de Projet** (recommandé pour ce lab, et par opposition aux MCP globaux, accessibles dans tous les projets)
 4. Cliquez pour éditer le fichier de configuration JSON
 5. Ajoutez cette configuration :
 

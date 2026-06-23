@@ -545,4 +545,4 @@ Vous maîtrisez maintenant :
 
 ---
 
-*Lab créé pour le Bobathon 2026*
+*Lab créé pour le Bobathon Juin 2026*
