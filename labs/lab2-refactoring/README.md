@@ -10,7 +10,7 @@
 
 À la fin de ce lab, vous serez capable de :
 
-- ✅ Identifier les code smells dans du code existant
+- ✅ Identifier les "code smells" dans du code existant
 - ✅ Appliquer des techniques de refactoring
 - ✅ Utiliser des design patterns appropriés
 - ✅ Améliorer la lisibilité et la maintenabilité
@@ -22,7 +22,7 @@
 
 ### Prérequis
 
-- Avoir complété le Lab 1
+- Avoir complété les Lab 1 et 1 bis
 - Connaissances de base en programmation
 - Python 3.8+ installé
 - Environnement virtuel Python activé (`.venv` à la racine du projet)

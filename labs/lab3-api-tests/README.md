@@ -608,4 +608,4 @@ Avant de passer au Lab suivant, vérifiez :
 
 ---
 
-_Lab créé pour le Bobathon 2026_
+_Lab créé pour le Bobathon, Juin 2026_

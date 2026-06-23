@@ -53,6 +53,8 @@ lab4-bobshell/
 
 ## Partie 1 : Démarrage avec BobShell
 
+Documentation de Bob shell: https://bob.ibm.com/docs/shell
+
 ### Étape 1.1 : Installer et Vérifier BobShell
 
 **⚠️ Important pour les utilisateurs Windows :**
@@ -61,7 +63,7 @@ BobShell ne s'installe pas automatiquement avec Bob sur Windows. Vous devez l'in
 
 👉 **[Guide d'Installation BobShell](https://bob.ibm.com/docs/shell/getting-started/install-and-setup)**
 
-**📚 Note :** La documentation publique de Bob est disponible sur : **https://ibm.biz/bob-doc**
+**📚 Note :** La documentation publique pdf de Bob est disponible sur : **https://ibm.biz/bob-doc**
 
 **Pour tous les utilisateurs**, vérifiez que BobShell est installé et accessible :
 
@@ -267,6 +269,7 @@ bob --resume latest
 
 **💡 Astuce :** Utilisez `--resume latest` quand vous voulez continuer votre travail le plus récent, ou `--list-sessions` pour voir toutes les sessions disponibles et en choisir une spécifique.
 
+** Note : ** Les sessions sont sauvegardées dans `~/.bob/sessions/` et conservent l'historique des interactions, des fichiers modifiés et des suggestions données par Bob.
 
 ## Partie 2 : Génération de Code via CLI
 
@@ -325,11 +328,15 @@ Crée un endpoint d'API REST avec :
 - Formatage des réponses
 - Codes de statut HTTP appropriés
 EOF
+```
 
-# Utiliser le prompt sauvegardé avec des détails spécifiques
+Utiliser le prompt sauvegardé avec des détails spécifiques
+```bash
 bob "$(cat api-prompt.txt) Crée un endpoint POST dans /api/users pour créer de nouveaux utilisateurs, dans user-endpoint.js" --yolo
+```
 
-# Ou combiner avec un contexte supplémentaire
+Ou combiner avec un contexte supplémentaire
+```bash
 bob "$(cat api-prompt.txt) Crée un endpoint GET dans /api/products pour lister les produits avec pagination, dans products-endpoint.js" --yolo
 ```
 ```bash
@@ -353,7 +360,7 @@ bob "$prompt Crée un endpoint POST dans /api/users pour créer de nouveaux util
 - Assure la cohérence dans votre base de code
 - Réduit la répétition dans vos prompts
 
-## Partie 3 : Analyse et Revue de Code - Exemples de Cas d'Usage
+## Partie 3 : Analyse et Revue de Code - Cas d'Usage
 
 **📝 Note :** Cette section démontre des exemples de prompts montrant comment BobShell peut être utilisé pour l'analyse et la revue de code dans des projets réels. Ce sont des exemples de référence, pas des commandes à exécuter dans le cadre de ce lab.
 
@@ -930,3 +937,5 @@ Dans ce lab, vous avez appris :
 4. Contactez le support IBM
 
 **Feedback :** Aidez-nous à améliorer ce lab en fournissant des retours sur ce qui a bien fonctionné et ce qui pourrait être amélioré !
+
+--Bobathon 2026--

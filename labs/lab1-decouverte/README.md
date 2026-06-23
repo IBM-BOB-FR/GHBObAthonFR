@@ -23,7 +23,7 @@
 
 - IBM Bob installé et configuré
 - Terminal accessible
-- Utilitaire `curl` installé et fonctionnel
+- Utilitaire `curl` installé et fonctionnel ("brew install curl" pour macos/linix si besoin, ou demandez à Bob comment l'installer sur Windows).
 
 ### Activation de l'environnement virtuel
 
@@ -247,7 +247,7 @@ Utiliser Bob pour exécuter des commandes et automatiser des tâches.
   cd backend && npm install && npm test
   ```
 - Utilisez le framework que vous connaissez le mieux
-- Flask est déjà installé dans le .venv du projet
+- Flask est maintenant installé dans le .venv du projet
 
 ---
 

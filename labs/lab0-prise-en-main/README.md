@@ -22,7 +22,7 @@
 
 ### Vérification de l'Installation
 
-1. **Ouvrez IBM Bob**
+1. **Ouvrez IBM Bob**. (download sur https://bob.ibm.com/ si besoin)
 2. **Vérifiez que Bob est accessible** (icône dans la barre latérale)
 3. **Testez la connexion** : Envoyez "Hello Bob" et attendez une réponse
 
@@ -462,7 +462,7 @@ Si vous avez répondu NON à une question, **revenez sur l'exercice correspondan
 1. **Ne soyez pas vague**
    - Bob a besoin de clarté pour être efficace
 
-2. **N'assumez pas**
+2. **Ne faites pas d'hypothèses**
    - Attendez toujours la confirmation
    - Vérifiez les résultats
 
@@ -586,22 +586,11 @@ Pour en savoir plus sur les règles personnalisées, consultez la [documentation
 
 Félicitations ! Vous avez terminé le Lab 0. Vous êtes maintenant prêt(e) pour les labs suivants.
 
-### Choisissez votre prochain lab selon votre profil :
+### Continuez avec le lab "découverte" :
 
 - **Lab 1 - Découverte** (45-60 min) ⭐  
   Parfait si vous voulez approfondir les bases
 
-- **Lab 2 - Refactoring** (60-75 min) ⭐⭐  
-  Pour apprendre à améliorer du code existant
-
-- **Lab 3 - API et Tests** (75-90 min) ⭐⭐⭐  
-  Pour créer des APIs REST avec tests
-
-- **Lab 4 - Data Science** (75-90 min) ⭐⭐⭐  
-  Pour analyser des données avec pandas
-
-- **Lab 5 - Architecture** (90-120 min) ⭐⭐⭐⭐  
-  Pour concevoir des architectures robustes
 
 ---
 

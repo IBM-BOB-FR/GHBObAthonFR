@@ -1,4 +1,4 @@
-# Lab 1 : Créer une application Todo avec Bob
+# Lab 1 bis : Créer une application Todo avec Bob
 
 ## Vue d'ensemble
 
@@ -20,7 +20,7 @@ Une application Todo full-stack avec :
 
 À la fin de ce lab, vous serez capable de :
 
-- ✅ Comprendre les trois modes de Bob (Architect, Code, Ask)
+- ✅ Comprendre les cinq modes de Bob (Plan, Code, Ask, Advanced, Orchestrator)
 - ✅ Utiliser les auto-approbations pour un développement rapide
 - ✅ Pratiquer les techniques de codage littéraire
 - ✅ Intégrer GitHub en utilisant les serveurs MCP
@@ -56,10 +56,10 @@ Chronologie du Lab 1 (45 minutes)
 
 ### Comprendre les modes de Bob
 
-Bob dispose de trois modes distincts, chacun optimisé pour différentes tâches :
+Bob dispose de cinq modes intégrés distincts, chacun optimisé pour différentes tâches :
 
 > **🎯 Différenciateur Bob : [Modes personnalisables](../../bob-differentiators.md#1--extensible-architecture)**
-> Le système de modes de Bob est l'un de ses principaux différenciateurs. Contrairement à d'autres assistants IA, Bob vous permet de créer des modes personnalisés adaptés aux flux de travail spécifiques de votre équipe. Les trois modes intégrés que vous utiliserez dans ce lab ne sont qu'un début—vous pouvez créer des modes spécialisés pour la revue de code, la documentation, la conception d'architecture, et plus encore. En savoir plus dans le lab6.
+> Le système de modes de Bob est l'un de ses principaux différenciateurs. Contrairement à d'autres assistants IA, Bob vous permet de créer des modes personnalisés adaptés aux flux de travail spécifiques de votre équipe. Les cinq modes intégrés (Plan, Code, Ask, Advanced, Orchestrator) que vous découvrirez dans ce lab ne sont qu'un début—vous pouvez créer des modes spécialisés pour la revue de code, la documentation, la conception d'architecture, et plus encore. En savoir plus dans le lab6.
 
 #### 🎯 Mode Plan
 
@@ -87,6 +87,28 @@ Bob dispose de trois modes distincts, chacun optimisé pour différentes tâches
 - Obtenir de la documentation
 - Comprendre les erreurs
 - Apprendre les meilleures pratiques
+
+#### 🚀 Mode Advanced
+
+**Quand l'utiliser** : Tâches complexes nécessitant des serveurs MCP
+
+- Accéder à des API externes via MCP
+- Interagir avec des bases de données
+- Utiliser des outils personnalisés
+- Intégrer des services tiers (GitHub, Jira, etc.)
+
+**Note** : Ce mode nécessite la configuration de serveurs MCP. Voir [lab6](../lab6-custom-mcp-modes/) pour plus de détails.
+
+#### 🎼 Mode Orchestrator
+
+**Quand l'utiliser** : Orchestration de workflows multi-agents
+
+- Coordonner plusieurs agents IA
+- Gérer des tâches complexes multi-étapes
+- Déléguer des sous-tâches à des agents spécialisés
+- Optimiser l'exécution parallèle de tâches
+
+**Note** : Mode avancé pour les workflows d'entreprise complexes nécessitant une orchestration intelligente.
 
 ### Basculer entre les modes
 
@@ -548,9 +570,9 @@ python
 
 ## Félicitations ! 🎉
 
-Vous avez terminé avec succès le Lab 1 ! Vous avez appris à :
+Vous avez terminé avec succès le Lab 1b bis ! Vous avez appris à :
 
-- ✅ Utiliser le mode Architect de Bob pour la planification
+- ✅ Utiliser le mode Plan de Bob pour la planification
 - ✅ Utiliser le mode Code de Bob pour l'implémentation
 - ✅ Activer et utiliser les auto-approbations
 - ✅ Appliquer les principes de codage littéraire
@@ -578,7 +600,7 @@ bob-todo-app/
 
 ### Modes de Bob
 
-- **Architect** : Parfait pour la planification et les décisions de conception
+- **Plan** : Parfait pour la planification et les décisions de conception
 - **Code** : Idéal pour l'implémentation et la création de fichiers
 - **Ask** : Excellent pour l'apprentissage et la compréhension
 - **Modes personnalisés** : Créez vos propres modes spécialisés ([En savoir plus](../../bob-differentiators.md#customizable-modes))
@@ -722,6 +744,6 @@ Comment s'est passé ce lab ? Nous aimerions connaître votre avis :
 
 ---
 
-**Prêt pour le prochain défi ?** → [Commencer le Lab 2 : Analyse de sécurité](../lab2-refactoring/README.md)
+**Prêt pour le prochain défi ?** → [Commencer le Lab 2 : Refactoring](../lab2-refactoring/README.md)
 
-_Dernière mise à jour : Mars 2026_
+_Dernière mise à jour : Juin 2026_
