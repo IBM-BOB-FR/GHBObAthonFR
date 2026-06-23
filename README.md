@@ -46,6 +46,7 @@ Progression recommandée selon votre profil :
 - **[Lab 7](labs/lab7-devops-automation)** : DevOps, Automation & Playbooks (expert) ⭐⭐⭐⭐⭐
 - **[Lab 8](labs/lab8-skills-et-rules)** : Skills et Rules - Personnaliser Bob (avancé) ⭐⭐⭐
 - **[Lab 9](labs/lab9-bob-ibmi.md)** : Introduction à Bob & IBM i — Modernisation d'applications IBM i (intermédiaire à avancé) ⭐⭐⭐
+- **[Lab 10](labs/lab10-bob-java.md)** : Modernisations d'applications Java avec Bob (avancé) ⭐⭐⭐
 
 ## 🗺️ Parcours d'Apprentissage
 
