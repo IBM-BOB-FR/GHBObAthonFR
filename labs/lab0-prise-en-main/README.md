@@ -543,7 +543,7 @@ EOF
 
 ### Règles globales vs. règles de projet
 
-**Règles de projet** (`.bobrules` dans votre projet) :
+**Règles de projet** (`.bob/rules/` dans votre projet) :
 
 - S'appliquent uniquement au projet actuel
 - Parfaites pour les standards spécifiques au projet
